@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>Bala Shree M — UI/UX Designer Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-lowest": "#060e20",
+            "surface": "#0b1326",
+            "surface-card": "#171f33",
+            "surface-high": "#222a3d",
+            "surface-highest": "#2d3449",
+            "primary": "#c084fc",
+            "primary-glow": "#9333ea",
+            "secondary": "#818cf8",
+            "tertiary": "#4edea3"
+          },
+          fontFamily: {
+            sans: ["Plus Jakarta Sans", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+<style id="portfolio-dynamic-styles">
+    :root {
+      --motion-speed: 1s;
+    }
+
+    html, body {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      background-color: #0b1326;
+      color: #dae2fd;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    html:not(.dark) body {
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+    ::-webkit-scrollbar { display: none; }
+
+    #stardust-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 99990;
+    }
+
+    /* Reliable CSS Entrance Animations */
+    @keyframes heroFadeUp {
+      0% { opacity: 0; transform: translateY(40px) scale(0.96); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes slideUpTitle {
+      0% { opacity: 0; transform: translateY(100%); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes floatGentle {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .entrance-enabled .anim-hero-portrait {
+      animation: heroFadeUp calc(var(--motion-speed) * 1.2) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .hero-float {
+      animation: floatGentle 6s ease-in-out infinite alternate;
+    }
+    .entrance-enabled .anim-title {
+      animation: slideUpTitle calc(var(--motion-speed)) cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
+    }
+    .entrance-enabled .anim-role {
+      animation: heroFadeUp calc(var(--motion-speed) * 0.9) cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards;
+    }
+    .entrance-enabled .anim-bio {
+      animation: heroFadeUp calc(var(--motion-speed) * 0.9) cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+    }
+    .entrance-enabled .anim-btn {
+      animation: heroFadeUp calc(var(--motion-speed) * 0.9) cubic-bezier(0.16, 1, 0.3, 1) 0.75s forwards;
+    }
+    .entrance-enabled .anim-pills {
+      animation: heroFadeUp calc(var(--motion-speed) * 0.9) cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
+    }
+
+    .entrance-disabled .anim-hero-portrait,
+    .entrance-disabled .anim-title,
+    .entrance-disabled .anim-role,
+    .entrance-disabled .anim-bio,
+    .entrance-disabled .anim-btn,
+    .entrance-disabled .anim-pills {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    /* Scroll Reveals */
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity calc(var(--motion-speed) * 0.85) cubic-bezier(0.16, 1, 0.3, 1), transform calc(var(--motion-speed) * 0.85) cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-item.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .entrance-disabled .reveal-item {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+
+    /* Advanced Multi-step Gradient Mask for Ultra-Smooth Bottom Fade */
+    .portrait-mask {
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,0) 100%);
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,0) 100%);
+    }
+
+    /* Ambient Spotlight Glow */
+    #hero-ambient-glow {
+      transition: opacity 0.5s ease;
+    }
+    .ambient-glow-hidden {
+      opacity: 0 !important;
+    }
+
+    /* Light Theme Styling Adapters */
+    html:not(.dark) .light-card {
+      background-color: #ffffff !important;
+      border-color: #e2e8f0 !important;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05) !important;
+    }
+    html:not(.dark) .light-subtle {
+      background-color: #f1f5f9 !important;
+    }
+    html:not(.dark) .light-text-title {
+      color: #0f172a !important;
+    }
+    html:not(.dark) .light-text-sub {
+      color: #475569 !important;
+    }
+    html:not(.dark) .light-nav {
+      background-color: rgba(255, 255, 255, 0.94) !important;
+      border-color: #e2e8f0 !important;
+    }
+    html:not(.dark) .hero-fade-overlay {
+      background: linear-gradient(to bottom, rgba(248, 250, 252, 0) 0%, rgba(248, 250, 252, 0.6) 55%, #f8fafc 100%) !important;
+    }
+    html.dark .hero-fade-overlay {
+      background: linear-gradient(to bottom, rgba(11, 19, 38, 0) 0%, rgba(11, 19, 38, 0.6) 55%, #0b1326 100%) !important;
+    }
+  </style>
+</head>
+<body class="font-sans flex flex-col min-h-screen relative overflow-x-hidden entrance-enabled">
+<canvas id="stardust-canvas"></canvas>
+<!-- Notification Toast -->
+<div class="fixed top-20 right-5 z-[999999] px-4 py-2.5 rounded-xl bg-purple-900/90 border border-purple-400 text-white text-xs font-semibold shadow-2xl backdrop-blur-md transition-all duration-300 transform translate-x-36 opacity-0 pointer-events-none flex items-center gap-2" id="toast">
+<span class="material-symbols-outlined text-[18px] text-emerald-400">check_circle</span>
+<span id="toast-text">Changes Applied</span>
+</div>
+<!-- FIXED HEADER -->
+<header class="fixed top-0 w-full z-50 bg-[#080e1c]/90 dark:bg-[#080e1c]/90 light-nav backdrop-blur-xl border-b border-white/5 transition-colors">
+<div class="h-16 max-w-4xl mx-auto px-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#7042f8] to-[#9333ea] flex items-center justify-center shadow-lg ring-1 ring-white/20">
+<span class="text-white font-extrabold text-[17px]">BS</span>
+</div>
+<div>
+<span class="font-bold text-[15px] leading-snug block text-white dark:text-white light-text-title" id="nav-brand-name">Bala Shree M</span>
+<span class="text-[#a5b4fc] text-[11px] font-medium" id="nav-brand-role">UI/UX Designer</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<!-- ADMIN LOGIN / CMS BUTTON -->
+<button class="h-9 px-3 rounded-xl bg-purple-950/40 border border-purple-500/40 hover:border-purple-400 text-purple-200 text-xs font-semibold flex items-center gap-1.5 transition-all active:scale-95 shadow-sm" id="admin-trigger-btn" onclick="handleAdminTrigger()">
+<span class="material-symbols-outlined text-[16px]" id="admin-icon">lock</span>
+<span id="admin-label">Login</span>
+</button>
+<!-- THEME SWITCHER -->
+<button class="h-9 px-3 rounded-xl bg-[#171f33]/80 dark:bg-[#171f33]/80 light-card border border-white/10 hover:border-purple-400 flex items-center gap-2 text-slate-300 light-text-title transition-all active:scale-95" id="theme-btn" onclick="toggleTheme()">
+<span class="material-symbols-outlined text-[18px] text-amber-400" id="theme-icon">light_mode</span>
+<span class="text-xs font-semibold hidden sm:inline" id="theme-label">Light</span>
+</button>
+</div>
+</div>
+</header>
+<!-- MAIN PORTFOLIO BODY -->
+<main class="flex flex-col relative w-full pt-20 pb-28 flex-grow">
+<div class="w-full max-w-2xl mx-auto px-4 flex flex-col gap-14">
+<!-- 1. HERO SECTION WITH ULTRA-SMOOTH SEAMLESS GRADIENT BOTTOM FADE -->
+<section class="flex flex-col items-center text-center pt-3 pb-2 relative" id="hero-section">
+<!-- Portrait Cutout with feathered CSS mask & dual-mode bottom fade overlay -->
+<div class="anim-hero-portrait relative w-full max-w-[310px] mx-auto flex items-end justify-center bg-transparent opacity-0 overflow-visible">
+<div class="absolute inset-0 bg-gradient-to-tr from-purple-600/35 via-indigo-500/25 to-pink-500/15 rounded-full blur-3xl pointer-events-none scale-90" id="hero-ambient-glow"></div>
+<div class="hero-float relative w-full flex items-end justify-center bg-transparent">
+<img alt="Bala Shree M - UI/UX Designer" class="w-full h-auto max-h-[380px] object-contain portrait-mask bg-transparent select-none relative z-10" id="hero-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAK5_7T5rGHQE-WL76tg4_u9ui4zSX8kxDPTIjZYgv_fQKTBI3Cu9ORYxXxOZfiBafmnQs59gSzASpwi3vlaB_OnoAX9QHdINXgAkv1-uO_NuFozlbNhS0GnNj5FyOhx6S0pQbf7-a-ZdlZ7Tkruc61C4RnFccqH4RLV9nXBbCLUQwpnge7h80zhvfQvY7Q9EYm7_Fp4GdkOq7x4Bc5I2qhbW4t570TmnQZqti9YUTJDUsGGUcZVa5NM_pXmtn7ukH6qA"/>
+<!-- Bottom fade overlay blending naturally into background in both dark & light modes -->
+<div class="hero-fade-overlay absolute inset-x-0 bottom-0 h-28 pointer-events-none z-20 transition-colors duration-300"></div>
+</div>
+</div>
+<!-- Headline Overlapping Fade -->
+<div class="-mt-4 relative z-20 flex flex-col items-center gap-3">
+<h1 class="text-4xl sm:text-5xl font-extrabold text-white dark:text-white light-text-title tracking-tight leading-[1.2] flex flex-wrap justify-center items-center gap-2">
+<span class="overflow-hidden inline-flex">
+<span class="anim-title opacity-0" id="display-greeting">Hi, I'm</span>
+</span>
+<span class="overflow-hidden inline-flex">
+<span class="anim-title opacity-0 bg-gradient-to-r from-[#818cf8] via-[#c084fc] to-[#f472b6] bg-clip-text text-transparent drop-shadow-[0_2px_18px_rgba(192,132,252,0.35)]" id="display-name">Bala Shree M</span>
+</span>
+</h1>
+<!-- Role Badge -->
+<div class="anim-role opacity-0 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1e1438]/80 dark:bg-[#1e1438]/80 light-subtle border border-[#8b5cf6]/40 shadow-[0_0_15px_rgba(139,92,246,0.25)] backdrop-blur-md">
+<span class="w-2 h-2 rounded-full bg-[#a855f7] shadow-[0_0_8px_#a855f7] animate-pulse"></span>
+<span class="text-xs font-semibold text-[#e9ddff] dark:text-[#e9ddff] light-text-title tracking-wide" id="display-role">• UI/UX Designer &amp; EEE Student</span>
+</div>
+<!-- Bio Narrative -->
+<p class="anim-bio opacity-0 text-sm sm:text-base text-[#cbd5e1] dark:text-[#cbd5e1] light-text-sub leading-relaxed max-w-md mx-auto px-2 mt-1" id="display-bio">
+            Aspiring UI/UX Designer with an Electrical and Electronics Engineering background (Student, 2023–2027), skilled in Figma, wireframing, prototyping, and user-centered design. Passionate about crafting intuitive and visually captivating digital experiences.
+          </p>
+<!-- CTAs -->
+<div class="anim-btn opacity-0 flex flex-col sm:flex-row w-full max-w-xs sm:max-w-sm gap-3 pt-2">
+<a class="flex-1 py-3.5 px-6 rounded-2xl bg-gradient-to-r from-[#7c3aed] to-[#9333ea] hover:from-[#6d28d9] hover:to-[#7e22ce] text-white font-semibold text-sm sm:text-base flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(147,51,234,0.45)] border border-white/20 active:scale-95 transition-all" href="#projects-section">
+<span>Explore Projects</span>
+<span class="text-lg leading-none font-bold">↓</span>
+</a>
+<a class="flex-1 py-3 px-6 rounded-2xl bg-[#0f172a]/90 dark:bg-[#0f172a]/90 light-card text-white dark:text-white light-text-title font-medium text-sm sm:text-base flex items-center justify-center gap-2 border border-white/10 shadow-lg active:scale-95 transition-all" href="mailto:balashreem12@gmail.com" id="btn-contact-me">
+<span class="material-symbols-outlined text-[19px] text-[#c084fc]">mail</span>
+<span>Contact Me</span>
+</a>
+</div>
+<!-- Contact Pills -->
+<div class="anim-pills opacity-0 flex flex-col items-center w-full max-w-xs gap-2 pt-2">
+<div class="w-full py-2 px-4 rounded-xl bg-[#0e172a]/70 dark:bg-[#0e172a]/70 light-card border border-white/10 flex items-center justify-center gap-2 text-xs sm:text-sm text-[#cbd5e1] dark:text-[#cbd5e1] light-text-sub">
+<span class="text-[#a855f7]">📍</span>
+<span class="font-medium" id="display-location">Kanyakumari, Tamil Nadu</span>
+</div>
+<a class="w-full py-2 px-4 rounded-xl bg-[#0e172a]/70 dark:bg-[#0e172a]/70 light-card border border-white/10 hover:border-purple-400 flex items-center justify-center gap-2 text-xs sm:text-sm text-[#cbd5e1] dark:text-[#cbd5e1] light-text-sub transition-all" href="mailto:balashreem12@gmail.com" id="pill-email-link">
+<span class="text-[#a855f7]">✉</span>
+<span class="font-medium" id="display-email">balashreem12@gmail.com</span>
+</a>
+<a class="w-full py-2 px-4 rounded-xl bg-[#0e172a]/70 dark:bg-[#0e172a]/70 light-card border border-white/10 hover:border-purple-400 flex items-center justify-center gap-2 text-xs sm:text-sm text-[#cbd5e1] dark:text-[#cbd5e1] light-text-sub transition-all" href="tel:+918248905390" id="pill-phone-link">
+<span class="text-[#a855f7]">📞</span>
+<span class="font-medium" id="display-phone">+91 8248905390</span>
+</a>
+<a class="w-full py-2 px-4 rounded-xl bg-[#0e172a]/70 dark:bg-[#0e172a]/70 light-card border border-white/10 hover:border-purple-400 flex items-center justify-center gap-2 text-xs sm:text-sm text-[#cbd5e1] dark:text-[#cbd5e1] light-text-sub transition-all" href="https://linkedin.com/in/bala-shree-m" id="pill-linkedin-link" rel="noopener" target="_blank">
+<span class="text-[#a855f7]">🔗</span>
+<span class="font-medium" id="display-linkedin">linkedin.com/in/bala-shree-m</span>
+</a>
+</div>
+</div>
+</section>
+<!-- 2. SELECTED WORK & FIGMA PROTOTYPE SECTION -->
+<section class="flex flex-col gap-4 reveal-item" id="projects-section">
+<div class="flex items-end justify-between">
+<div>
+<span class="text-xs text-emerald-400 tracking-wider uppercase font-semibold">Case Studies</span>
+<h2 class="text-xl sm:text-2xl text-white dark:text-white light-text-title font-bold">Selected Work</h2>
+</div>
+<span class="font-mono text-xs text-slate-400 light-text-sub" id="projects-count-badge">02 Cases</span>
+</div>
+<div class="flex flex-col gap-4" id="projects-container">
+<!-- BurgerCart Project -->
+<article class="p-5 rounded-2xl bg-[#171f33]/90 dark:bg-[#171f33]/90 light-card backdrop-blur-xl border border-white/10 shadow-xl flex flex-col gap-4" id="project-card-burgercart">
+<div class="flex items-start justify-between">
+<div class="flex flex-col gap-1">
+<div class="flex flex-wrap items-center gap-1.5" id="burgercart-tags-container">
+<span class="px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 text-xs font-semibold">Mobile App</span>
+<span class="px-2.5 py-0.5 rounded-full bg-[#222a3d] dark:bg-[#222a3d] light-subtle text-slate-300 light-text-sub text-xs">UX Research</span>
+<span class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-semibold">Figma High-Fi</span>
+</div>
+<h3 class="text-base sm:text-lg text-white dark:text-white light-text-title font-bold mt-1" id="burgercart-title">BurgerCart — Fast Food Delivery App</h3>
+</div>
+<span class="p-2 rounded-full bg-[#222a3d] dark:bg-[#222a3d] light-subtle text-purple-300 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">lunch_dining</span>
+</span>
+</div>
+<!-- Visible High-Contrast Graphic Mockup Preview Card -->
+<a class="relative w-full h-48 sm:h-52 rounded-xl overflow-hidden bg-gradient-to-br from-[#1a1033] via-[#0f172a] to-[#070d1e] shadow-inner flex flex-col justify-between p-4 group cursor-pointer border border-white/15 hover:border-purple-400/60 transition-all duration-300" href="https://embed.figma.com/proto/cYkbl8N1molzjjULAC2lBk/Untitled?node-id=252-380&amp;p=f&amp;scaling=scale-down&amp;content-scaling=fixed&amp;page-id=0%3A1&amp;starting-point-node-id=163%3A188&amp;embed-host=share" id="figma-preview-card" rel="noopener noreferrer" target="_blank">
+<!-- Stylized UI Phone Mockup Illustration Behind -->
+<div class="absolute right-4 -bottom-6 w-56 h-56 rounded-2xl bg-gradient-to-b from-[#251747] to-[#131b2e] border-2 border-purple-500/40 p-3 shadow-2xl rotate-6 group-hover:rotate-3 group-hover:scale-105 transition-all duration-500 pointer-events-none flex flex-col gap-2">
+<div class="w-16 h-3 mx-auto bg-purple-900/60 rounded-full"></div>
+<div class="flex items-center gap-2 p-2 bg-[#1c2438] rounded-lg">
+<span class="text-2xl">🍔</span>
+<div class="flex flex-col gap-1 w-full">
+<div class="h-2 w-3/4 bg-purple-400/80 rounded"></div>
+<div class="h-1.5 w-1/2 bg-slate-500/80 rounded"></div>
+</div>
+</div>
+<div class="p-2 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg flex items-center justify-between text-[10px] text-white font-bold">
+<span>Custom Double Patty</span>
+<span class="text-emerald-300">$8.40</span>
+</div>
+</div>
+<!-- Header badge -->
+<div class="relative z-10 flex items-center justify-between">
+<div class="flex items-center gap-2 bg-[#131b2e]/90 px-3 py-1 rounded-full border border-purple-500/30">
+<span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+<span class="text-xs text-purple-200 font-medium">Interactive Figma Canvas</span>
+</div>
+<span class="text-xs text-white bg-purple-600 px-2.5 py-1 rounded-lg flex items-center gap-1 font-semibold shadow-md group-hover:bg-purple-500">
+<span>Launch Flow</span>
+<span class="material-symbols-outlined text-[13px]">open_in_new</span>
+</span>
+</div>
+<div class="relative z-10 flex items-center justify-between">
+<div class="flex items-center gap-1.5 bg-[#2d3449]/90 dark:bg-[#2d3449]/90 light-subtle px-3 py-1 rounded-md backdrop-blur-md border border-white/10">
+<span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+<span class="font-mono text-xs text-white dark:text-white light-text-title font-medium">Browse → Custom Tray → Checkout</span>
+</div>
+</div>
+</a>
+<p class="text-xs sm:text-sm text-slate-300 light-text-sub leading-relaxed" id="burgercart-desc">
+              Engineered user flows, interactive wireframes, component design systems, and responsive layouts. Solved conversion drop-offs with streamlined customizer trays and clear nutritional labeling.
+            </p>
+<!-- Metrics Strip -->
+<div class="grid grid-cols-3 gap-2 p-2.5 rounded-xl bg-[#131b2e] dark:bg-[#131b2e] light-subtle text-center" id="burgercart-metrics">
+<div class="flex flex-col">
+<span class="text-base sm:text-lg text-purple-300 font-bold" id="m1-val">38%</span>
+<span class="text-[11px] text-slate-400 light-text-sub" id="m1-lbl">Faster Checkout</span>
+</div>
+<div class="flex flex-col">
+<span class="text-base sm:text-lg text-emerald-400 font-bold" id="m2-val">24+</span>
+<span class="text-[11px] text-slate-400 light-text-sub" id="m2-lbl">Custom Atoms</span>
+</div>
+<div class="flex flex-col">
+<span class="text-base sm:text-lg text-indigo-300 font-bold" id="m3-val">100%</span>
+<span class="text-[11px] text-slate-400 light-text-sub" id="m3-lbl">WCAG Compliant</span>
+</div>
+</div>
+<!-- Launch Button -->
+<button class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#9333ea] hover:opacity-95 text-white text-sm font-bold flex items-center justify-center gap-2 active:scale-95 transition-all shadow-[0_0_20px_rgba(124,58,237,0.4)]" id="btn-launch-prototype" onclick="launchPrototype()">
+<span class="material-symbols-outlined text-[20px]">preview</span>
+<span>Launch Figma Interactive Prototype</span>
+<span class="material-symbols-outlined text-[18px]">arrow_outward</span>
+</button>
+</article>
+<!-- WildShield AI Project -->
+<article class="p-5 rounded-2xl bg-[#171f33]/90 dark:bg-[#171f33]/90 light-card backdrop-blur-xl border border-white/10 shadow-xl flex flex-col gap-4">
+<div class="flex items-start justify-between">
+<div class="flex flex-col gap-1">
+<div class="flex wrap items-center gap-1.5">
+<span class="px-2.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-semibold">Web Dashboard</span>
+<span class="px-2.5 py-0.5 rounded-full bg-[#222a3d] dark:bg-[#222a3d] light-subtle text-slate-300 light-text-sub text-xs">AI Forest Tech</span>
+<span class="px-2.5 py-0.5 rounded-full bg-white/10 text-white dark:text-white light-text-title text-xs">Role-Based UX</span>
+</div>
+<h3 class="text-base sm:text-lg text-white dark:text-white light-text-title font-bold mt-1">WildShield AI — Wildlife &amp; Forest Surveillance</h3>
+</div>
+<span class="p-2 rounded-full bg-[#222a3d] dark:bg-[#222a3d] light-subtle text-emerald-400 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">nature</span>
+</span>
+</div>
+<!-- High Visibility Dashboard Graphic Card -->
+<div class="relative w-full h-44 sm:h-48 rounded-xl overflow-hidden bg-gradient-to-br from-[#06241a] via-[#102027] to-[#07131b] shadow-inner flex flex-col justify-between p-4 border border-emerald-500/30 group">
+<!-- Geometric Dashboard Preview UI Elements -->
+<div class="absolute inset-0 opacity-20 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:16px_16px]"></div>
+<div class="relative z-10 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+<span class="text-xs font-bold text-emerald-300 uppercase tracking-wide">Live Threat Detection Grid</span>
+</div>
+<span class="text-[11px] text-slate-200 bg-[#16382b]/80 border border-emerald-500/30 px-2 py-0.5 rounded">Officer Dispatch Active</span>
+</div>
+<div class="relative z-10 grid grid-cols-3 gap-2 my-auto">
+<div class="bg-black/40 border border-emerald-500/20 rounded-lg p-2 flex flex-col">
+<span class="text-[10px] text-slate-400">Sector 4-Alpha</span>
+<span class="text-xs font-bold text-emerald-400">Status Clear</span>
+</div>
+<div class="bg-black/40 border border-amber-500/40 rounded-lg p-2 flex flex-col">
+<span class="text-[10px] text-slate-400">Perimeter Sensor</span>
+<span class="text-xs font-bold text-amber-400">Motion Logged</span>
+</div>
+<div class="bg-black/40 border border-purple-500/30 rounded-lg p-2 flex flex-col">
+<span class="text-[10px] text-slate-400">Camera Trap #12</span>
+<span class="text-xs font-bold text-purple-300">98.4% Confidence</span>
+</div>
+</div>
+<div class="relative z-10 flex items-center justify-between">
+<span class="font-mono text-xs text-emerald-400 flex items-center gap-1 font-medium">
+<span class="material-symbols-outlined text-[14px]">sensors</span> Real-time AI Vision Triage
+</span>
+<span class="text-xs text-slate-300 light-text-sub bg-[#222a3d]/90 dark:bg-[#222a3d]/90 light-subtle px-2.5 py-0.5 rounded border border-white/10">Admin • Officer • Viewer</span>
+</div>
+</div>
+<p class="text-xs sm:text-sm text-slate-300 light-text-sub leading-relaxed">
+              Crafted tailored dashboards with specific permission hierarchies: immediate SOS dispatch for patrol officers, holistic analytics for forest conservators, and audit trails for ecological researchers.
+            </p>
+</article>
+</div>
+</section>
+<!-- 3. VERIFIED CERTIFICATIONS SECTION (ORDERED: 1. HCI, 2. UI DESIGN, 3. MICROSOFT, 4. SIMPLILEARN) -->
+<section class="flex flex-col gap-4 reveal-item" id="certifications-section">
+<div class="flex items-end justify-between">
+<div>
+<span class="text-xs text-purple-400 tracking-wider uppercase font-semibold">Government, Industry &amp; Academia</span>
+<h2 class="text-xl sm:text-2xl text-white dark:text-white light-text-title font-bold">Verified Certifications</h2>
+</div>
+<span class="px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 font-mono text-xs font-semibold" id="certs-count-badge">4 Credentials</span>
+</div>
+<div class="flex flex-col gap-4" id="certifications-container">
+<!-- 1st Certificate: HCI (NPTEL) -->
+<div class="p-5 rounded-2xl bg-[#171f33]/90 dark:bg-[#171f33]/90 light-card backdrop-blur-xl border border-white/10 shadow-xl flex flex-col gap-3" id="cert-card-hci">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<span class="p-2 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">workspace_premium</span>
+</span>
+<div>
+<span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold uppercase" id="hci-badge">Topper 2% • Elite</span>
+<h3 class="text-base text-white dark:text-white light-text-title font-bold mt-0.5" id="hci-title">Human Computer Interaction</h3>
+</div>
+</div>
+<span class="text-xl font-bold text-emerald-400" id="hci-score">99%</span>
+</div>
+<p class="text-xs sm:text-sm text-slate-300 light-text-sub" id="hci-subdesc">
+              Issued by <strong class="text-white dark:text-white light-text-title" id="hci-institute-lbl">IIIT Delhi &amp; IIT Madras</strong> | Online Assignments: 25/25, Proctored Exam: 73.75/75. <span id="hci-roll-lbl">Roll: NPTEL26CS70S261700371</span>.
+            </p>
+<div class="relative w-full rounded-xl overflow-hidden bg-slate-900 shadow-md cursor-pointer group border border-emerald-500/20" onclick="openCertModal('hci')">
+<img alt="HCI NPTEL Certificate" class="w-full h-44 sm:h-52 object-cover object-top group-hover:scale-105 transition-all duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3fkGaURVN-mpYEO5nDNDH2G8TZECbfXwV_VyaQUhM6PQw8Wv9nVSU-rawcH0Zh5xCysc37OdiSr1IrpIeXiRbKpN35F8vSZFWC6H2LVhp-An0rlFWwjNEl6veJ9iNclxTKN8zDnl0_QuoxmySf39XXMLAOhAdOIdoOfJJpjzCqJW38YC5Qd65uenxMa4sCP-jx9JJvTgrf9Z-1FI177oIS_GmQSioEt7YEs42bEDvWjdDIs2ispapALk0t6OFh1kj"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent flex items-end p-3">
+<span class="text-xs text-white bg-[#0f172a]/90 backdrop-blur-md px-2.5 py-1 rounded-lg flex items-center gap-1.5 shadow-lg border border-white/20">
+<span class="material-symbols-outlined text-[16px] text-emerald-400">zoom_in</span> Topper 2% Elite Credential
+</span>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-xl bg-[#222a3d] dark:bg-[#222a3d] light-subtle text-purple-300 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 hover:bg-[#2d3449] transition-all border border-white/5" onclick="openCertModal('hci')">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>View Verified Certificate</span>
+</button>
+</div>
+<!-- 2nd Certificate: UI Design (NPTEL) -->
+<div class="p-5 rounded-2xl bg-[#171f33]/90 dark:bg-[#171f33]/90 light-card backdrop-blur-xl border border-white/10 shadow-xl flex flex-col gap-3" id="cert-card-ui">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<span class="p-2 rounded-lg bg-purple-500/20 text-purple-300 flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">design_services</span>
+</span>
+<div>
+<span class="px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 text-xs font-bold uppercase" id="ui-badge">Elite Certified</span>
+<h3 class="text-base text-white dark:text-white light-text-title font-bold mt-0.5" id="ui-title">User Interface Design</h3>
+</div>
+</div>
+<span class="text-xl font-bold text-purple-300" id="ui-score">77%</span>
+</div>
+<p class="text-xs sm:text-sm text-slate-300 light-text-sub" id="ui-subdesc">
+              Issued by <strong class="text-white dark:text-white light-text-title" id="ui-institute-lbl">IIT Roorkee</strong> | Assignments: 23.83/25, Proctored Exam: 52.88/75. <span id="ui-roll-lbl">Roll: NPTEL26AR15S663400201</span>.
+            </p>
+<div class="relative w-full rounded-xl overflow-hidden bg-slate-900 shadow-md cursor-pointer group border border-purple-500/20" onclick="openCertModal('ui')">
+<img alt="UI Design NPTEL Certificate" class="w-full h-44 sm:h-52 object-cover object-top group-hover:scale-105 transition-all duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvpvJbjB6QEk1gMhlhr4ZO0b4dILl7qEYE6-wbfUFGM0tqf3o46BqSi3jApNnsYcQfArHqyEX44s-QBle73AZEl_daFLSfh-IB9PTI6LzM5jXqh_PIgsY8V0oIBqUmyPQ64Qv9EA2Irc9yFoLdBYL4LTAtT1Kh6yp_Ij2NOOKxJJH4KGnmnCwcNvK75FJmRC_6PsiJNodMd_bqIbjnHIIkQAHR63C0LupwG6mF9vd33N75KupYevjWQUUoZFwOVfdb"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent flex items-end p-3">
+<span class="text-xs text-white bg-[#0f172a]/90 backdrop-blur-md px-2.5 py-1 rounded-lg flex items-center gap-1.5 shadow-lg border border-white/20">
+<span class="material-symbols-outlined text-[16px] text-purple-400">zoom_in</span> Elite NPTEL Credential
+</span>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-xl bg-[#222a3d] dark:bg-[#222a3d] light-subtle text-purple-300 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 hover:bg-[#2d3449] transition-all border border-white/5" onclick="openCertModal('ui')">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>View Verified Certificate</span>
+</button>
+</div>
+<!-- 3rd Certificate: Microsoft & Coursera - Fundamentals of UI/UX Design -->
+<div class="p-5 rounded-2xl bg-[#171f33]/90 dark:bg-[#171f33]/90 light-card backdrop-blur-xl border border-white/10 shadow-xl flex flex-col gap-3" id="cert-card-microsoft">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<span class="p-2 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">verified_user</span>
+</span>
+<div>
+<span class="px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-400 text-xs font-bold uppercase">Microsoft Authorized • Coursera</span>
+<h3 class="text-base text-white dark:text-white light-text-title font-bold mt-0.5">Fundamentals of UI/UX Design</h3>
+</div>
+</div>
+<span class="text-xs font-bold px-2 py-1 rounded bg-[#222a3d] dark:bg-[#222a3d] light-subtle text-sky-300">Feb 23, 2026</span>
+</div>
+<p class="text-xs sm:text-sm text-slate-300 light-text-sub">
+              Authorized by <strong class="text-white dark:text-white light-text-title">Microsoft</strong> and offered through <strong class="text-white dark:text-white light-text-title">Coursera</strong>. Verification URL: <a class="text-sky-400 underline hover:text-sky-300" href="https://coursera.org/verify/PREFY24VH7QO" target="_blank">coursera.org/verify/PREFY24VH7QO</a>.
+            </p>
+<!-- Visible Image Preview Card with IMAGE_8 -->
+<div class="relative w-full rounded-xl overflow-hidden bg-white shadow-md cursor-pointer group border border-slate-200 dark:border-white/10" onclick="openCertModal('microsoft')">
+<img alt="Microsoft Fundamentals of UI/UX Design Certificate" class="w-full h-52 sm:h-64 object-contain object-center group-hover:scale-[1.02] transition-all duration-300 bg-white" id="microsoft-thumb-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmxzI2onNEa5VN7OSxfW36yYxfIxjH6aKGXxlTbctok75QCRikDJ0Lrq1YVrzebHUNSu0YIeHt92O-mo4_5BYK2iXn3ZANgfVUrHYymSaUAXyey2niCfo8QGIE80iVVPAI3aNOQNimcWYLyDdp1xijXl_C07eGYuUNlTV2IOH-4SUV7cppdm7aO3lW4OUzIXKRZ42IjjPuKzLFhv8Nl0s8BRESLIM17HUupYsE_bGm578zx0s_FOS2tHBeATFYOtxXHA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-3 pointer-events-none">
+<span class="text-xs text-white bg-[#0f172a]/90 backdrop-blur-md px-2.5 py-1 rounded-lg flex items-center gap-1.5 shadow-lg border border-white/20">
+<span class="material-symbols-outlined text-[16px] text-sky-400">zoom_in</span> Tap to Inspect Verified Credential
+</span>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-xl bg-[#222a3d] dark:bg-[#222a3d] light-subtle text-sky-300 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 hover:bg-[#2d3449] transition-all border border-white/5" onclick="openCertModal('microsoft')">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>View Microsoft Credential</span>
+</button>
+</div>
+<!-- 4th Certificate: Simplilearn SkillUp - Introduction to Graphic Design; Basics of UI/UX -->
+<div class="p-5 rounded-2xl bg-[#171f33]/90 dark:bg-[#171f33]/90 light-card backdrop-blur-xl border border-white/10 shadow-xl flex flex-col gap-3" id="cert-card-simplilearn">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<span class="p-2 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">auto_stories</span>
+</span>
+<div>
+<span class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-400 text-xs font-bold uppercase">Simplilearn SkillUp</span>
+<h3 class="text-base text-white dark:text-white light-text-title font-bold mt-0.5">Introduction to Graphic Design; Basics of UI/UX</h3>
+</div>
+</div>
+<span class="text-xs font-bold px-2 py-1 rounded bg-[#222a3d] dark:bg-[#222a3d] light-subtle text-amber-300">Dec 21, 2025</span>
+</div>
+<p class="text-xs sm:text-sm text-slate-300 light-text-sub">
+              Issued by <strong class="text-white dark:text-white light-text-title">Simplilearn</strong> | Certificate Code: <strong class="text-white dark:text-white light-text-title">9616590</strong> (CEO Krishna Kumar). Demonstrating foundational mastery in UI/UX and graphic design principles.
+            </p>
+<!-- Visible Image Preview Card with IMAGE_7 -->
+<div class="relative w-full rounded-xl overflow-hidden bg-white shadow-md cursor-pointer group border border-slate-200 dark:border-white/10" onclick="openCertModal('simplilearn')">
+<img alt="Simplilearn Graphic Design &amp; Basics of UI/UX Certificate" class="w-full h-52 sm:h-64 object-contain object-center group-hover:scale-[1.02] transition-all duration-300 bg-white" id="simplilearn-thumb-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzlCuN1vX7T3R5vOlg1CUI_ATGdPCk7d0w9HCKk6cDeXzN6uL-h5FJeFTvwN0OP56y9GNfdJOYDaLAWUZwOIw0DVHlxGZEURmYf3_NtNLuby1eFQ-C_-LjG4yaHRLQSXSs6ulUXpDs20aRn_BO9FALMdbbspRbxPsooeoG7FEjUrVX20qH3mxfrnqeeIdiFKZbB6JH-DsqOxhdnoVeE3ZhL7irCWAh3HOrrPpwf05TX8g-ISiFqsnDcUM4rGzPVallgg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-3 pointer-events-none">
+<span class="text-xs text-white bg-[#0f172a]/90 backdrop-blur-md px-2.5 py-1 rounded-lg flex items-center gap-1.5 shadow-lg border border-white/20">
+<span class="material-symbols-outlined text-[16px] text-amber-400">zoom_in</span> Tap to Inspect Verified Credential
+</span>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-xl bg-[#222a3d] dark:bg-[#222a3d] light-subtle text-amber-300 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 hover:bg-[#2d3449] transition-all border border-white/5" onclick="openCertModal('simplilearn')">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>View Simplilearn Certificate</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 4. EXPERIENCE & INTERNSHIPS SECTION -->
+<section class="flex flex-col gap-4 reveal-item" id="experience-section">
+<div class="flex items-end justify-between">
+<div>
+<span class="text-xs text-emerald-400 tracking-wider uppercase font-semibold">Journey</span>
+<h2 class="text-xl sm:text-2xl text-white dark:text-white light-text-title font-bold">Experience &amp; Internships</h2>
+</div>
+</div>
+<div class="flex flex-col gap-4" id="internships-container">
+<!-- Internship 1: GenLab -->
+<div class="p-5 rounded-2xl bg-[#171f33]/90 dark:bg-[#171f33]/90 light-card backdrop-blur-xl border border-white/10 shadow-lg flex flex-col gap-3" id="intern-card-genlab">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-mono text-xs text-purple-300 font-medium" id="genlab-dates">Apr 2026</span>
+<h3 class="text-base text-white dark:text-white light-text-title font-semibold" id="genlab-role">UI/UX Design Intern</h3>
+<p class="text-xs sm:text-sm text-slate-300 light-text-sub" id="genlab-company">GenLab Pvt. Ltd.</p>
+</div>
+<span class="px-2.5 py-0.5 rounded bg-purple-500/20 text-purple-300 text-xs font-semibold">Internship</span>
+</div>
+<ul class="flex flex-col gap-1.5 text-slate-300 light-text-sub text-xs sm:text-sm" id="genlab-bullets">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-purple-400 text-[16px] mt-0.5">check_circle</span>
+<span>Conducted foundational user interviews and empathy mapping for client digital platforms.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-purple-400 text-[16px] mt-0.5">check_circle</span>
+<span>Executed accessibility (WCAG 2.1) audits and delivered scalable design system tokens in Figma.</span>
+</li>
+</ul>
+<!-- Interactive Proof Preview Card -->
+<div class="relative w-full rounded-xl overflow-hidden bg-slate-900 shadow-md cursor-pointer group border border-purple-500/20" onclick="openCertModal('genlab')">
+<img alt="GenLab Internship Completion Letter" class="w-full h-40 sm:h-48 object-cover object-top group-hover:scale-105 transition-all duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHmj3mWV4EXh9yuYHpS23T8mjcMESGjsDK31hQ2vRSAt6KvJAldqGFgZFITE1iuSpv5jHhncENd6CgoRcHwS2RG-fpUr5zqDHwSCsrRfoLCyfeTUnCQAP_dvg4pPm4-gc-jaTRLyrviV-0ubhRR-166WYLmacPX85Z2ni0FX6bG_bNCxuyf-hAHb_xc0gQOrKF0ceTYcRIxJjwqNqH_ne9WFA2wddF6w3v1WgjVaXuEIy0I9khV-MhC4Xdt1OYL9W7sg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent flex items-end p-3">
+<span class="text-xs text-white bg-[#0f172a]/90 backdrop-blur-md px-2.5 py-1 rounded-lg flex items-center gap-1.5 shadow-lg border border-white/20">
+<span class="material-symbols-outlined text-[16px] text-purple-400">zoom_in</span> View GenLab Certificate
+</span>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-xl bg-[#222a3d] dark:bg-[#222a3d] light-subtle hover:bg-[#2d3449] text-purple-300 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all border border-white/5" onclick="openCertModal('genlab')">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>View Internship Certificate</span>
+</button>
+</div>
+<!-- Internship 2: TVK Technologies -->
+<div class="p-5 rounded-2xl bg-[#171f33]/90 dark:bg-[#171f33]/90 light-card backdrop-blur-xl border border-white/10 shadow-lg flex flex-col gap-3" id="intern-card-tvk">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-mono text-xs text-emerald-400 font-medium" id="tvk-dates">Jun 2026</span>
+<h3 class="text-base text-white dark:text-white light-text-title font-semibold" id="tvk-role">Full Stack Development Intern</h3>
+<p class="text-xs sm:text-sm text-slate-300 light-text-sub" id="tvk-company">TVK Technologies</p>
+</div>
+<span class="px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-xs font-semibold">Internship</span>
+</div>
+<ul class="flex flex-col gap-1.5 text-slate-300 light-text-sub text-xs sm:text-sm" id="tvk-bullets">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-emerald-400 text-[16px] mt-0.5">check_circle</span>
+<span>Architected responsive frontend views using HTML5, modern CSS, and component frameworks.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-emerald-400 text-[16px] mt-0.5">check_circle</span>
+<span>Bridged developer-designer handoff to achieve pixel-perfect fidelity from prototypes to code.</span>
+</li>
+</ul>
+<!-- Interactive TVK letter preview -->
+<div class="relative w-full rounded-xl overflow-hidden bg-slate-900 shadow-md cursor-pointer group border border-emerald-500/20" onclick="openCertModal('tvk')">
+<img alt="TVK Technologies Completion Letter" class="w-full h-40 sm:h-48 object-cover object-top group-hover:scale-105 transition-all duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeiut2Mi2VIy43SOMMAeuUgVpInUuQe2CM7c7XcR6xgcBBcXZPCi-dxh2bPpGujlN8l_YPZ8pO5VODTiDFZFA7h4UERoivYe-DrO_5zxdwEiLjcQVa3kJfF8TykpeUzhcvln6QB6oocYMWQgJDA6u_gjwn0l2iW1Mg9ZYuDFZd5bR0x7nZg5kdlP0svc7qtdJV4r6mW5HCtiduADYDiQjX7CKhLjT-kyW7W0JWE6HUxaNL4Jv7ATsRg85bfQqSuH5u8g"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent flex items-end p-3">
+<span class="text-xs text-white bg-[#0f172a]/90 backdrop-blur-md px-2.5 py-1 rounded-lg flex items-center gap-1.5 shadow-lg border border-white/20">
+<span class="material-symbols-outlined text-[16px] text-emerald-400">zoom_in</span> View TVK Completion Letter
+</span>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-xl bg-[#222a3d] dark:bg-[#222a3d] light-subtle hover:bg-[#2d3449] text-emerald-400 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all border border-white/5" onclick="openCertModal('tvk')">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>View Completion Letter</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 5. SKILLS & TOOLSET -->
+<section class="flex flex-col gap-4 reveal-item" id="skills-section">
+<div class="flex items-end justify-between">
+<div>
+<span class="text-xs text-purple-400 tracking-wider uppercase font-semibold">Capabilities</span>
+<h2 class="text-xl sm:text-2xl text-white dark:text-white light-text-title font-bold">Skills &amp; Toolset</h2>
+</div>
+</div>
+<div class="grid grid-cols-1 gap-3">
+<div class="p-4 rounded-xl bg-[#171f33]/90 dark:bg-[#171f33]/90 light-card backdrop-blur-xl border border-white/10 shadow-md flex flex-col gap-2">
+<div class="flex items-center gap-2 text-purple-400">
+<span class="material-symbols-outlined text-[20px]">brush</span>
+<h3 class="text-sm font-semibold text-white dark:text-white light-text-title">Design &amp; UX Strategy</h3>
+</div>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2.5 py-1 rounded-full bg-[#222a3d] dark:bg-[#222a3d] light-subtle text-xs text-white dark:text-white light-text-title">User-Centered Design (UCD)</span>
+<span class="px-2.5 py-1 rounded-full bg-[#222a3d] dark:bg-[#222a3d] light-subtle text-xs text-white dark:text-white light-text-title">Wireframing</span>
+<span class="px-2.5 py-1 rounded-full bg-[#222a3d] dark:bg-[#222a3d] light-subtle text-xs text-white dark:text-white light-text-title">Design Systems</span>
+<span class="px-2.5 py-1 rounded-full bg-[#222a3d] dark:bg-[#222a3d] light-subtle text-xs text-white dark:text-white light-text-title">Information Architecture</span>
+<span class="px-2.5 py-1 rounded-full bg-[#222a3d] dark:bg-[#222a3d] light-subtle text-xs text-white dark:text-white light-text-title">Interactive Prototyping</span>
+<span class="px-2.5 py-1 rounded-full bg-[#222a3d] dark:bg-[#222a3d] light-subtle text-xs text-white dark:text-white light-text-title">Usability Testing</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. CONTACT FOOTER -->
+<section class="p-6 rounded-2xl bg-gradient-to-br from-[#222a3d] via-[#171f33] to-[#131b2e] dark:from-[#222a3d] dark:via-[#171f33] dark:to-[#131b2e] light-card border border-white/10 shadow-2xl flex flex-col gap-4 text-center reveal-item">
+<div class="flex flex-col items-center gap-1">
+<span class="text-xs text-emerald-400 uppercase tracking-wider font-semibold">Let's Build Something Memorable</span>
+<h2 class="text-lg sm:text-xl text-white dark:text-white light-text-title font-bold">Have a project or internship opening?</h2>
+<p class="text-xs sm:text-sm text-slate-300 light-text-sub max-w-sm mt-1">
+            Currently open to full-time UI/UX design internships, junior product designer roles, and freelance consulting.
+          </p>
+</div>
+<div class="flex flex-col gap-2.5 w-full max-w-xs mx-auto">
+<a class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#9333ea] text-white text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 active:scale-95 transition-all shadow-[0_0_20px_rgba(124,58,237,0.35)]" href="mailto:balashreem12@gmail.com">
+<span class="material-symbols-outlined text-[18px]">send</span>
+<span>Send Direct Message</span>
+</a>
+<a class="w-full py-2.5 px-4 rounded-xl bg-[#2d3449] dark:bg-[#2d3449] light-subtle border border-white/5 text-white dark:text-white light-text-title text-xs sm:text-sm font-medium flex items-center justify-center gap-2 active:scale-95 transition-all" href="https://linkedin.com/in/bala-shree-m" rel="noopener" target="_blank">
+<span class="material-symbols-outlined text-[16px]">share</span>
+<span>Connect on LinkedIn</span>
+</a>
+</div>
+</section>
+</div>
+</main>
+<!-- FIXED BOTTOM DOCK -->
+<nav class="fixed bottom-0 w-full z-50 bg-[#080e1c]/90 dark:bg-[#080e1c]/90 light-nav backdrop-blur-xl border-t border-white/5 transition-colors">
+<div class="flex items-center justify-between h-16 max-w-4xl mx-auto px-4">
+<div class="flex items-center gap-3">
+<a class="px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-purple-400 text-xs font-semibold" href="#projects-section">
+<span class="material-symbols-outlined text-[18px]">grid_view</span>
+<span>Work</span>
+</a>
+<a class="px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-slate-300 light-text-sub hover:text-white text-xs font-medium" href="#certifications-section">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Certs</span>
+</a>
+<a class="px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-slate-300 light-text-sub hover:text-white text-xs font-medium" href="#experience-section">
+<span class="material-symbols-outlined text-[18px]">badge</span>
+<span>Experience</span>
+</a>
+</div>
+<div class="flex items-center gap-1.5 bg-[#222a3d]/80 dark:bg-[#222a3d]/80 light-subtle px-2 py-1 rounded-full border border-white/10">
+<a class="w-8 h-8 rounded-full flex items-center justify-center text-slate-300 hover:text-purple-300" href="mailto:balashreem12@gmail.com">
+<span class="material-symbols-outlined text-[16px]">alternate_email</span>
+</a>
+<a class="w-8 h-8 rounded-full flex items-center justify-center text-slate-300 hover:text-purple-300" href="https://linkedin.com/in/bala-shree-m" rel="noopener" target="_blank">
+<span class="material-symbols-outlined text-[16px]">share</span>
+</a>
+<a class="w-8 h-8 rounded-full flex items-center justify-center text-purple-300 bg-[#2d3449] dark:bg-[#2d3449] light-card shadow-sm" href="tel:+918248905390">
+<span class="material-symbols-outlined text-[16px]">call</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- DYNAMIC CERTIFICATE MODAL WITH TAB BAR (ORDERED: HCI, UI, Microsoft, Simplilearn, GenLab, TVK) -->
+<div class="fixed inset-0 z-[99999] bg-black/85 backdrop-blur-md hidden flex-col justify-center items-center p-4" id="cert-modal">
+<div class="w-full max-w-2xl bg-[#171f33] dark:bg-[#171f33] light-card rounded-2xl shadow-2xl flex flex-col overflow-hidden max-h-[92vh] relative border border-white/10">
+<div class="flex items-center justify-between px-3 py-2 bg-[#222a3d] dark:bg-[#222a3d] light-subtle border-b border-white/5">
+<div class="flex items-center gap-1 overflow-x-auto py-1" id="cert-modal-tabs">
+<button class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-400 text-slate-900 whitespace-nowrap" id="tab-btn-hci" onclick="switchCertTab('hci')">HCI (99%)</button>
+<button class="px-2.5 py-1 rounded-lg text-xs font-medium text-slate-300 light-text-sub whitespace-nowrap" id="tab-btn-ui" onclick="switchCertTab('ui')">UI (77%)</button>
+<button class="px-2.5 py-1 rounded-lg text-xs font-medium text-slate-300 light-text-sub whitespace-nowrap" id="tab-btn-microsoft" onclick="switchCertTab('microsoft')">Microsoft</button>
+<button class="px-2.5 py-1 rounded-lg text-xs font-medium text-slate-300 light-text-sub whitespace-nowrap" id="tab-btn-simplilearn" onclick="switchCertTab('simplilearn')">Simplilearn</button>
+<button class="px-2.5 py-1 rounded-lg text-xs font-medium text-slate-300 light-text-sub whitespace-nowrap" id="tab-btn-genlab" onclick="switchCertTab('genlab')">GenLab</button>
+<button class="px-2.5 py-1 rounded-lg text-xs font-medium text-slate-300 light-text-sub whitespace-nowrap" id="tab-btn-tvk" onclick="switchCertTab('tvk')">TVK Tech</button>
+</div>
+<button class="p-1 rounded-lg bg-[#2d3449] text-slate-300 hover:text-white shrink-0 ml-2" onclick="closeCertModal()">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<div class="relative w-full flex-grow overflow-auto p-4 bg-[#0a0f1d] flex items-center justify-center min-h-[300px]">
+<img alt="Verified Certificate" class="w-full h-auto object-contain rounded-xl shadow-2xl max-h-[62vh] border border-white/10" id="cert-display-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3fkGaURVN-mpYEO5nDNDH2G8TZECbfXwV_VyaQUhM6PQw8Wv9nVSU-rawcH0Zh5xCysc37OdiSr1IrpIeXiRbKpN35F8vSZFWC6H2LVhp-An0rlFWwjNEl6veJ9iNclxTKN8zDnl0_QuoxmySf39XXMLAOhAdOIdoOfJJpjzCqJW38YC5Qd65uenxMa4sCP-jx9JJvTgrf9Z-1FI177oIS_GmQSioEt7YEs42bEDvWjdDIs2ispapALk0t6OFh1kj"/>
+</div>
+<div class="p-4 bg-[#222a3d] dark:bg-[#222a3d] light-subtle flex flex-col gap-1 border-t border-white/5">
+<div class="flex items-center justify-between">
+<span class="text-xs text-emerald-400 font-bold" id="cert-institute">IIIT Delhi &amp; IIT Madras</span>
+<span class="font-mono text-xs text-slate-400 light-text-sub" id="cert-roll">Roll: NPTEL26CS70S261700371</span>
+</div>
+<p class="text-xs text-slate-300 light-text-sub" id="cert-summary">Human Computer Interaction (In English) — Elite + Topper (Top 2%), Final Score: 99%.</p>
+</div>
+</div>
+</div>
+<!-- ADMIN AUTH MODAL -->
+<div class="fixed inset-0 z-[99999] bg-black/85 backdrop-blur-md hidden flex-col justify-center items-center p-4" id="admin-modal">
+<div class="w-full max-w-sm bg-[#171f33] dark:bg-[#171f33] light-card rounded-2xl shadow-2xl p-6 border border-purple-500/30 flex flex-col gap-4 relative">
+<button class="absolute top-4 right-4 p-1 rounded-lg text-slate-400 hover:text-white" onclick="closeAdminModal()">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-purple-600/20 text-purple-400 flex items-center justify-center border border-purple-500/30">
+<span class="material-symbols-outlined text-[22px]">admin_panel_settings</span>
+</div>
+<div>
+<h3 class="text-base font-bold text-white dark:text-white light-text-title">Admin Authentication</h3>
+<p class="text-xs text-slate-400 light-text-sub">Enter credentials to edit portfolio content</p>
+</div>
+</div>
+<div class="flex flex-col gap-3 mt-1">
+<div>
+<label class="text-xs font-semibold text-slate-300 light-text-title">Username</label>
+<input class="w-full mt-1 px-3 py-2 rounded-xl bg-[#0b1326] border border-white/10 text-white text-xs focus:outline-none focus:border-purple-500" id="admin-user-input" placeholder="bala@1234" type="text"/>
+</div>
+<div>
+<label class="text-xs font-semibold text-slate-300 light-text-title">Password</label>
+<input class="w-full mt-1 px-3 py-2 rounded-xl bg-[#0b1326] border border-white/10 text-white text-xs focus:outline-none focus:border-purple-500" id="admin-pass-input" placeholder="••••••••" type="password"/>
+</div>
+<p class="text-xs text-rose-400 font-medium hidden" id="admin-error-msg">Invalid credentials. Please verify your login.</p>
+</div>
+<button class="w-full py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-xs font-bold shadow-lg active:scale-95 transition-all" onclick="submitAdminLogin()">
+        Authenticate &amp; Open CMS
+      </button>
+</div>
+</div>
+<!-- EXPANDED 5-TAB CMS LIVE MANAGEMENT PANEL WITH CLOUD PERSISTENCE -->
+<div class="fixed inset-y-0 right-0 w-full sm:w-[500px] bg-[#171f33] dark:bg-[#171f33] light-card shadow-2xl border-l border-white/10 hidden flex-col z-[99999] overflow-hidden" id="cms-panel">
+<!-- Header -->
+<div class="flex items-center justify-between p-4 border-b border-white/10 bg-[#131b2e] dark:bg-[#131b2e] light-subtle">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+<div>
+<h3 class="text-sm font-bold text-white dark:text-white light-text-title">Portfolio CMS &amp; Dynamic Studio</h3>
+<span class="text-[10px] text-purple-300" id="cloud-sync-status">Live cloud sync ready</span>
+</div>
+</div>
+<button class="p-1 rounded-lg text-slate-400 hover:text-white" onclick="toggleCMSPanel()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- 5 CMS Tabs -->
+<div class="flex items-center bg-[#0b1326] px-2 py-1.5 border-b border-white/10 gap-1 overflow-x-auto">
+<button class="px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-purple-600 text-white whitespace-nowrap" id="cms-btn-1" onclick="switchCMSTab(1)">Hero &amp; Bio</button>
+<button class="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-300 whitespace-nowrap" id="cms-btn-2" onclick="switchCMSTab(2)">Motion &amp; VFX</button>
+<button class="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-300 whitespace-nowrap" id="cms-btn-3" onclick="switchCMSTab(3)">Certificates</button>
+<button class="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-300 whitespace-nowrap" id="cms-btn-4" onclick="switchCMSTab(4)">Prototypes</button>
+<button class="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-300 whitespace-nowrap" id="cms-btn-5" onclick="switchCMSTab(5)">Internships</button>
+</div>
+<!-- CMS Tab Panes -->
+<div class="flex-grow overflow-y-auto p-4 flex flex-col gap-4 text-xs">
+<!-- PANE 1: HERO & BIO -->
+<div class="flex flex-col gap-3" id="cms-pane-1">
+<div>
+<label class="font-semibold text-purple-300">Display Name</label>
+<input class="w-full mt-1 p-2 rounded-lg bg-[#0b1326] border border-white/10 text-white text-xs" id="cms-name" oninput="applyHeroCMS()" type="text" value="Bala Shree M"/>
+</div>
+<div>
+<label class="font-semibold text-purple-300">Role Badge</label>
+<input class="w-full mt-1 p-2 rounded-lg bg-[#0b1326] border border-white/10 text-white text-xs" id="cms-role" oninput="applyHeroCMS()" type="text" value="• UI/UX Designer &amp; EEE Student"/>
+</div>
+<div>
+<label class="font-semibold text-purple-300">Bio Narrative</label>
+<textarea class="w-full mt-1 p-2 rounded-lg bg-[#0b1326] border border-white/10 text-white text-xs leading-relaxed" id="cms-bio" oninput="applyHeroCMS()" rows="4">Aspiring UI/UX Designer with an Electrical and Electronics Engineering background (Student, 2023–2027), skilled in Figma, wireframing, prototyping, and user-centered design. Passionate about crafting intuitive and visually captivating digital experiences.</textarea>
+</div>
+<div>
+<label class="font-semibold text-purple-300">Email Address</label>
+<input class="w-full mt-1 p-2 rounded-lg bg-[#0b1326] border border-white/10 text-white text-xs" id="cms-email" oninput="applyHeroCMS()" type="text" value="balashreem12@gmail.com"/>
+</div>
+<div>
+<label class="font-semibold text-purple-300">Phone</label>
+<input class="w-full mt-1 p-2 rounded-lg bg-[#0b1326] border border-white/10 text-white text-xs" id="cms-phone" oninput="applyHeroCMS()" type="text" value="+91 8248905390"/>
+</div>
+<div>
+<label class="font-semibold text-purple-300">LinkedIn URL</label>
+<input class="w-full mt-1 p-2 rounded-lg bg-[#0b1326] border border-white/10 text-white text-xs" id="cms-linkedin" oninput="applyHeroCMS()" type="text" value="https://linkedin.com/in/bala-shree-m"/>
+</div>
+</div>
+<!-- PANE 2: MOTION & ANIMATIONS STUDIO -->
+<div class="hidden flex-col gap-4" id="cms-pane-2">
+<div class="p-3.5 rounded-xl bg-[#0b1326] border border-purple-500/30 flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div>
+<h4 class="font-bold text-white text-xs flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-purple-400">animation</span>
+                Entrance Animations
+              </h4>
+<p class="text-[11px] text-slate-400">Toggle staggered hero cascade &amp; scroll reveals</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" id="toggle-entrance-anim" onchange="applyMotionCMS()" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+</label>
+</div>
+<!-- Speed Presets & Slider -->
+<div class="flex flex-col gap-2 pt-2 border-t border-white/5">
+<div class="flex items-center justify-between">
+<label class="text-[11px] font-semibold text-slate-300">Animation Speed Duration</label>
+<span class="font-mono text-purple-300 text-xs font-bold" id="motion-speed-label">1.0s (Normal)</span>
+</div>
+<input class="w-full accent-purple-500 h-1.5 bg-slate-800 rounded-lg cursor-pointer" id="motion-speed-slider" max="2.2" min="0.4" oninput="updateMotionSpeed(this.value)" step="0.1" type="range" value="1.0"/>
+<div class="grid grid-cols-3 gap-2 mt-1">
+<button class="py-1 rounded bg-[#171f33] hover:bg-purple-600/30 border border-white/10 text-[11px] text-slate-300" onclick="setSpeedPreset(0.5, '0.5s (Fast)')">⚡ Fast (0.5s)</button>
+<button class="py-1 rounded bg-[#171f33] hover:bg-purple-600/30 border border-purple-500/40 text-[11px] text-purple-200" onclick="setSpeedPreset(1.0, '1.0s (Normal)')">✨ Normal (1.0s)</button>
+<button class="py-1 rounded bg-[#171f33] hover:bg-purple-600/30 border border-white/10 text-[11px] text-slate-300" onclick="setSpeedPreset(1.6, '1.6s (Slow)')">🌿 Slow (1.6s)</button>
+</div>
+</div>
+</div>
+<!-- VFX TOGGLES -->
+<div class="p-3.5 rounded-xl bg-[#0b1326] border border-white/10 flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div>
+<h4 class="font-bold text-white text-xs flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-emerald-400">auto_awesome</span>
+                Cursor Stardust Particles
+              </h4>
+<p class="text-[11px] text-slate-400">Trailing chromatic particle canvas upon mouse move</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" id="toggle-particles" onchange="applyMotionCMS()" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500"></div>
+</label>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-white/5">
+<div>
+<h4 class="font-bold text-white text-xs flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-amber-400">lens_blur</span>
+                Ambient Portrait Spotlight Glow
+              </h4>
+<p class="text-[11px] text-slate-400">Subtle purple/pink atmospheric gradient behind photo</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" id="toggle-ambient-glow" onchange="applyMotionCMS()" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+</label>
+</div>
+</div>
+</div>
+<!-- PANE 3: CERTIFICATES & IMAGE UPLOADS -->
+<div class="hidden flex-col gap-4" id="cms-pane-3">
+<!-- Edit Microsoft -->
+<div class="p-3.5 rounded-xl bg-[#0b1326] border border-white/10 flex flex-col gap-2.5">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-sky-400">Microsoft UI/UX Design</span>
+<span class="text-[10px] text-slate-400">Coursera</span>
+</div>
+<p class="text-xs text-slate-300">Fundamentals of UI/UX Design (Authorized by Microsoft)</p>
+<div class="flex items-center gap-2">
+<label class="cursor-pointer px-2.5 py-1.5 rounded bg-[#222a3d] hover:bg-[#2d3449] border border-sky-500/30 text-white text-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-sky-400">upload_file</span>
+<span>Replace Image</span>
+<input accept="image/*" class="hidden" onchange="handleCertFileUpload(event, 'microsoft')" type="file"/>
+</label>
+</div>
+</div>
+<!-- Edit Simplilearn -->
+<div class="p-3.5 rounded-xl bg-[#0b1326] border border-white/10 flex flex-col gap-2.5">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-amber-400">Simplilearn SkillUp</span>
+<span class="text-[10px] text-slate-400">Code: 9616590</span>
+</div>
+<p class="text-xs text-slate-300">Introduction to Graphic Design; Basics of UI/UX</p>
+<div class="flex items-center gap-2">
+<label class="cursor-pointer px-2.5 py-1.5 rounded bg-[#222a3d] hover:bg-[#2d3449] border border-amber-500/30 text-white text-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-amber-400">upload_file</span>
+<span>Replace Image</span>
+<input accept="image/*" class="hidden" onchange="handleCertFileUpload(event, 'simplilearn')" type="file"/>
+</label>
+</div>
+</div>
+<!-- + ADD NEW CERTIFICATE (WITH IMAGE UPLOAD & URL) -->
+<div class="p-3.5 rounded-xl bg-purple-950/30 border border-purple-500/30 flex flex-col gap-2.5">
+<span class="text-xs font-bold text-purple-300 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">add_circle</span>
+            Add New Certificate &amp; Upload Proof
+          </span>
+<input class="w-full p-1.5 rounded bg-[#0b1326] border border-white/10 text-white text-xs" id="new-cert-title" placeholder="Certificate Course Name" type="text"/>
+<div class="flex gap-2">
+<input class="flex-grow p-1.5 rounded bg-[#0b1326] border border-white/10 text-white text-xs" id="new-cert-inst" placeholder="Issuing Institution" type="text"/>
+<input class="w-24 p-1.5 rounded bg-[#0b1326] border border-white/10 text-white text-xs" id="new-cert-score" placeholder="Score / Date" type="text"/>
+</div>
+<input class="w-full p-1.5 rounded bg-[#0b1326] border border-white/10 text-white text-xs" id="new-cert-roll" placeholder="Verification ID / Credential Code" type="text"/>
+<div class="p-2.5 rounded-lg bg-[#0b1326]/80 border border-white/10 flex flex-col gap-2">
+<span class="text-[11px] font-semibold text-slate-300">Certificate Image / Proof:</span>
+<div class="flex items-center gap-2">
+<label class="cursor-pointer px-3 py-1.5 rounded bg-purple-600 hover:bg-purple-500 text-white text-xs font-medium flex items-center gap-1 shrink-0 active:scale-95 shadow">
+<span class="material-symbols-outlined text-[16px]">upload</span>
+<span>Upload Proof File</span>
+<input accept="image/*" class="hidden" id="new-cert-file-input" onchange="handleNewCertFileUpload(event)" type="file"/>
+</label>
+<input class="flex-grow p-1.5 rounded bg-[#171f33] border border-white/10 text-white text-xs" id="new-cert-url-input" placeholder="Or enter Image URL" type="text"/>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all shadow-md mt-1 flex items-center justify-center gap-1.5" onclick="addNewCert()">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Publish Credential to Portfolio &amp; Modal</span>
+</button>
+</div>
+</div>
+<!-- PANE 4: PROTOTYPE & WORK -->
+<div class="hidden flex-col gap-3" id="cms-pane-4">
+<div class="p-3 rounded-xl bg-[#0b1326] border border-white/10 flex flex-col gap-2">
+<span class="text-xs font-bold text-emerald-400">Edit BurgerCart Prototype</span>
+<div>
+<label class="text-[11px] text-slate-300">Title</label>
+<input class="w-full mt-0.5 p-1.5 rounded bg-[#171f33] border border-white/10 text-white text-xs" id="cms-p-title" oninput="applyBurgerCartCMS()" type="text" value="BurgerCart — Fast Food Delivery App"/>
+</div>
+<div>
+<label class="text-[11px] text-slate-300">Description</label>
+<textarea class="w-full mt-0.5 p-1.5 rounded bg-[#171f33] border border-white/10 text-white text-xs" id="cms-p-desc" oninput="applyBurgerCartCMS()" rows="2">Engineered user flows, interactive wireframes, component design systems, and responsive layouts. Solved conversion drop-offs with streamlined customizer trays and clear nutritional labeling.</textarea>
+</div>
+<div>
+<label class="text-[11px] text-slate-300">Figma Prototype URL</label>
+<input class="w-full mt-0.5 p-1.5 rounded bg-[#171f33] border border-white/10 text-white text-xs" id="cms-p-figma" oninput="applyBurgerCartCMS()" type="text" value="https://embed.figma.com/proto/cYkbl8N1molzjjULAC2lBk/Untitled?node-id=252-380&amp;p=f&amp;scaling=scale-down&amp;content-scaling=fixed&amp;page-id=0%3A1&amp;starting-point-node-id=163%3A188&amp;embed-host=share"/>
+</div>
+</div>
+</div>
+<!-- PANE 5: INTERNSHIPS -->
+<div class="hidden flex-col gap-3" id="cms-pane-5">
+<div class="p-3 rounded-xl bg-[#0b1326] border border-white/10 flex flex-col gap-2">
+<span class="text-xs font-bold text-purple-300">Edit GenLab Internship</span>
+<input class="w-full p-1.5 rounded bg-[#171f33] border border-white/10 text-white text-xs" id="cms-g-role" oninput="applyInternCMS()" type="text" value="UI/UX Design Intern"/>
+<input class="w-full p-1.5 rounded bg-[#171f33] border border-white/10 text-white text-xs" id="cms-g-comp" oninput="applyInternCMS()" type="text" value="GenLab Pvt. Ltd."/>
+</div>
+</div>
+</div>
+<!-- CMS Footer -->
+<div class="p-4 border-t border-white/10 bg-[#131b2e] dark:bg-[#131b2e] light-subtle flex items-center justify-between">
+<button class="py-2 px-4 rounded-xl bg-rose-900/50 hover:bg-rose-900/70 text-rose-300 border border-rose-500/30 text-xs font-semibold active:scale-95 transition-all" onclick="logoutAdmin()">
+        Logout
+      </button>
+<button class="py-2 px-5 rounded-xl bg-gradient-to-r from-purple-600 to-emerald-600 text-white text-xs font-bold shadow-lg active:scale-95 transition-all flex items-center gap-1.5" onclick="persistDataToCloud(); showToast('Saved &amp; Cloud Synced!')">
+<span class="material-symbols-outlined text-[16px]">cloud_upload</span>
+<span>Save &amp; Sync</span>
+</button>
+</div>
+</div>
+<!-- JAVASCRIPT LOGIC -->
+<script>
+    // 1. SUPABASE CLIENT AUTO-CONFIGURATION
+    const SUPABASE_URL = "https://ahvaquqzksvrghspktnp.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_tj5q_O5HvPtMVPScPjfeVA_D2MlEbHa";
+    let supabaseClient = null;
+
+    try {
+      if (window.supabase && SUPABASE_URL && SUPABASE_KEY) {
+        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        console.log("Supabase Client initialized successfully");
+      }
+    } catch (e) {
+      console.warn("Supabase init error:", e);
+    }
+
+    // 2. SCROLL REVEAL OBSERVER
+    function initScrollObserver() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+          }
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.reveal-item').forEach(el => observer.observe(el));
+    }
+    window.addEventListener('DOMContentLoaded', initScrollObserver);
+
+    // 3. PARTICLE CANVAS
+    const canvas = document.getElementById('stardust-canvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const particles = [];
+    const colors = ['#c084fc', '#38bdf8', '#fbbf24', '#f472b6', '#4edea3'];
+    let particlesEnabled = true;
+
+    window.addEventListener('pointermove', (e) => {
+      if (particlesEnabled) {
+        for (let i = 0; i < 2; i++) {
+          particles.push({
+            x: e.clientX,
+            y: e.clientY,
+            vx: (Math.random() - 0.5) * 1.8,
+            vy: (Math.random() - 0.5) * 1.8 - 0.5,
+            size: Math.random() * 2.8 + 1,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            life: 1
+          });
+        }
+      }
+    });
+
+    function renderParticles() {
+      ctx.clearRect(0, 0, width, height);
+      if (particlesEnabled) {
+        for (let i = particles.length - 1; i >= 0; i--) {
+          const p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.life -= 0.025;
+          if (p.life <= 0) {
+            particles.splice(i, 1);
+            continue;
+          }
+          ctx.globalAlpha = p.life;
+          ctx.fillStyle = p.color;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+      requestAnimationFrame(renderParticles);
+    }
+    requestAnimationFrame(renderParticles);
+
+    // 4. TOAST
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const txt = document.getElementById('toast-text');
+      txt.textContent = msg;
+      toast.classList.remove('opacity-0', 'translate-x-36');
+      toast.classList.add('opacity-100', 'translate-x-0');
+      setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-x-0');
+        toast.classList.add('opacity-0', 'translate-x-36');
+      }, 2400);
+    }
+
+    // 5. THEME TOGGLE
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.toggle('dark');
+      document.getElementById('theme-icon').textContent = isDark ? 'light_mode' : 'dark_mode';
+      document.getElementById('theme-label').textContent = isDark ? 'Light' : 'Dark';
+      localStorage.setItem('portfolio_theme', isDark ? 'dark' : 'light');
+    }
+
+    const savedTheme = localStorage.getItem('portfolio_theme');
+    if (savedTheme === 'light') {
+      document.documentElement.classList.remove('dark');
+      const ti = document.getElementById('theme-icon');
+      const tl = document.getElementById('theme-label');
+      if (ti) ti.textContent = 'dark_mode';
+      if (tl) tl.textContent = 'Dark';
+    }
+
+    // 6. CERTIFICATE REPOSITORY & MODAL LOGIC (SEQUENCE: HCI, UI, Microsoft, Simplilearn, GenLab, TVK)
+    const certData = {
+      hci: {
+        title: 'HCI (99%)',
+        img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD3fkGaURVN-mpYEO5nDNDH2G8TZECbfXwV_VyaQUhM6PQw8Wv9nVSU-rawcH0Zh5xCysc37OdiSr1IrpIeXiRbKpN35F8vSZFWC6H2LVhp-An0rlFWwjNEl6veJ9iNclxTKN8zDnl0_QuoxmySf39XXMLAOhAdOIdoOfJJpjzCqJW38YC5Qd65uenxMa4sCP-jx9JJvTgrf9Z-1FI177oIS_GmQSioEt7YEs42bEDvWjdDIs2ispapALk0t6OFh1kj',
+        inst: 'IIIT Delhi & IIT Madras',
+        roll: 'Roll: NPTEL26CS70S261700371',
+        summary: 'Human Computer Interaction (In English) — Elite + Topper (Top 2%), Final Score: 99%.'
+      },
+      ui: {
+        title: 'UI (77%)',
+        img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBvpvJbjB6QEk1gMhlhr4ZO0b4dILl7qEYE6-wbfUFGM0tqf3o46BqSi3jApNnsYcQfArHqyEX44s-QBle73AZEl_daFLSfh-IB9PTI6LzM5jXqh_PIgsY8V0oIBqUmyPQ64Qv9EA2Irc9yFoLdBYL4LTAtT1Kh6yp_Ij2NOOKxJJH4KGnmnCwcNvK75FJmRC_6PsiJNodMd_bqIbjnHIIkQAHR63C0LupwG6mF9vd33N75KupYevjWQUUoZFwOVfdb',
+        inst: 'IIT Roorkee',
+        roll: 'Roll: NPTEL26AR15S663400201',
+        summary: 'User Interface Design — Elite Certified, Final Score: 77%.'
+      },
+      microsoft: {
+        title: 'Microsoft',
+        img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAOCnwVtIGmWwfhLfSJrMI1MP5_wLR8lAibX__oKeIvV0YW6qOwL_p2yksVJo737wQW70c2d1JsqAbsnwvQ2I-dca8yIR5L7KB69nws0U6kJl3dc6j-YEDmB-GXKGHpt0_5o5f0I534N8-lPveJyH5y7HgeWE95B42ERQ6slW2623YQwfcYYicV52u-I3Wlvhb3FNYU5qoL_6e6ANAtZ6ox7mEJage0r9mBEHLMiU03KHL-KGpfih4iPij86bP0AsHo4A',
+        inst: 'Microsoft & Coursera',
+        roll: 'Verify: coursera.org/verify/PREFY24VH7QO',
+        summary: 'Fundamentals of UI/UX Design — An online course authorized by Microsoft and offered through Coursera. Completed Feb 23, 2026.'
+      },
+      simplilearn: {
+        title: 'Simplilearn',
+        img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBWvHIFNDjwUCxQp1SaiFqXIjjNRf5LVuxOPnoLr1iY-DXRm19DUM2z0YDp_TTXzNOwwo6_2XsRxyKvR4g9n4W2o6byT-Iikd3WN75KSO4-D1RUOvCAoxKHN4jvFg5vH3GsunkiOp1eoow8PingvyJ7g3DUQF-zpALZv49akTqR_V1raqLhrzNNkwuxq3r2ldfnLc-Ni2WvxY-Y51J6iGS-0Or0SraheaaX3uE6emaV4fUHMQcTA5ZtA85utU78b5IUHQ',
+        inst: 'Simplilearn SkillUp',
+        roll: 'Certificate Code: 9616590',
+        summary: 'Introduction to Graphic Design; Basics of UI/UX — Completed December 21, 2025 (CEO Krishna Kumar). Demonstrates initiative and mastery of core design principles.'
+      },
+      genlab: {
+        title: 'GenLab',
+        img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCHmj3mWV4EXh9yuYHpS23T8mjcMESGjsDK31hQ2vRSAt6KvJAldqGFgZFITE1iuSpv5jHhncENd6CgoRcHwS2RG-fpUr5zqDHwSCsrRfoLCyfeTUnCQAP_dvg4pPm4-gc-jaTRLyrviV-0ubhRR-166WYLmacPX85Z2ni0FX6bG_bNCxuyf-hAHb_xc0gQOrKF0ceTYcRIxJjwqNqH_ne9WFA2wddF6w3v1WgjVaXuEIy0I9khV-MhC4Xdt1OYL9W7sg',
+        inst: 'GenLab Pvt. Ltd.',
+        roll: 'ID: GL/INT/26/19',
+        summary: 'UI/UX Design Internship Certificate of Completion (Apr 14 – Apr 28, 2026).'
+      },
+      tvk: {
+        title: 'TVK Tech',
+        img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAeiut2Mi2VIy43SOMMAeuUgVpInUuQe2CM7c7XcR6xgcBBcXZPCi-dxh2bPpGujlN8l_YPZ8pO5VODTiDFZFA7h4UERoivYe-DrO_5zxdwEiLjcQVa3kJfF8TykpeUzhcvln6QB6oocYMWQgJDA6u_gjwn0l2iW1Mg9ZYuDFZd5bR0x7nZg5kdlP0svc7qtdJV4r6mW5HCtiduADYDiQjX7CKhLjT-kyW7W0JWE6HUxaNL4Jv7ATsRg85bfQqSuH5u8g',
+        inst: 'TVK Technologies',
+        roll: 'Reg No: 731123105007',
+        summary: 'Internship Completion Letter for Full Stack Development on "Mental Health Analysis".'
+      }
+    };
+
+    let activeCertKey = 'hci';
+    function switchCertTab(key) {
+      activeCertKey = key;
+      const tabContainer = document.getElementById('cert-modal-tabs');
+      tabContainer.querySelectorAll('button').forEach(btn => {
+        if (btn.id === `tab-btn-${key}`) {
+          btn.className = 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-400 text-slate-900 whitespace-nowrap';
+        } else {
+          btn.className = 'px-2.5 py-1 rounded-lg text-xs font-medium text-slate-300 light-text-sub whitespace-nowrap';
+        }
+      });
+      const d = certData[key];
+      if (d) {
+        document.getElementById('cert-display-img').src = d.img;
+        document.getElementById('cert-institute').textContent = d.inst;
+        document.getElementById('cert-roll').textContent = d.roll;
+        document.getElementById('cert-summary').textContent = d.summary;
+      }
+    }
+
+    function openCertModal(key) {
+      switchCertTab(key);
+      document.getElementById('cert-modal').classList.remove('hidden');
+      document.getElementById('cert-modal').classList.add('flex');
+    }
+    function closeCertModal() {
+      document.getElementById('cert-modal').classList.add('hidden');
+      document.getElementById('cert-modal').classList.remove('flex');
+    }
+
+    // 7. ADMIN AUTH & CMS
+    let isAdmin = false;
+    function handleAdminTrigger() {
+      if (isAdmin) {
+        toggleCMSPanel();
+      } else {
+        document.getElementById('admin-modal').classList.remove('hidden');
+        document.getElementById('admin-modal').classList.add('flex');
+        document.getElementById('admin-error-msg').classList.add('hidden');
+      }
+    }
+    function closeAdminModal() {
+      document.getElementById('admin-modal').classList.add('hidden');
+      document.getElementById('admin-modal').classList.remove('flex');
+    }
+    function submitAdminLogin() {
+      const u = document.getElementById('admin-user-input').value.trim();
+      const p = document.getElementById('admin-pass-input').value.trim();
+      if (u === 'bala@1234' && p === 'hogan@1234') {
+        isAdmin = true;
+        closeAdminModal();
+        const btn = document.getElementById('admin-trigger-btn');
+        btn.className = 'h-9 px-3 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm';
+        document.getElementById('admin-icon').textContent = 'edit_note';
+        document.getElementById('admin-label').textContent = 'CMS Active';
+        toggleCMSPanel();
+        showToast("Authenticated as Bala Shree M");
+      } else {
+        document.getElementById('admin-error-msg').classList.remove('hidden');
+      }
+    }
+    function toggleCMSPanel() {
+      const panel = document.getElementById('cms-panel');
+      panel.classList.toggle('hidden');
+      panel.classList.toggle('flex');
+    }
+    function logoutAdmin() {
+      isAdmin = false;
+      toggleCMSPanel();
+      const btn = document.getElementById('admin-trigger-btn');
+      btn.className = 'h-9 px-3 rounded-xl bg-purple-950/40 border border-purple-500/40 text-purple-200 text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm';
+      document.getElementById('admin-icon').textContent = 'lock';
+      document.getElementById('admin-label').textContent = 'Login';
+      showToast("Logged out");
+    }
+
+    function switchCMSTab(num) {
+      for (let i = 1; i <= 5; i++) {
+        const btn = document.getElementById(`cms-btn-${i}`);
+        const pane = document.getElementById(`cms-pane-${i}`);
+        if (i === num) {
+          btn.className = 'px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-purple-600 text-white whitespace-nowrap';
+          pane.classList.remove('hidden');
+          pane.classList.add('flex');
+        } else {
+          btn.className = 'px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-300 whitespace-nowrap';
+          pane.classList.add('hidden');
+          pane.classList.remove('flex');
+        }
+      }
+    }
+
+    // CMS Handlers
+    function applyHeroCMS() {
+      const n = document.getElementById('cms-name').value;
+      const r = document.getElementById('cms-role').value;
+      const b = document.getElementById('cms-bio').value;
+      const e = document.getElementById('cms-email').value;
+      const p = document.getElementById('cms-phone').value;
+      const l = document.getElementById('cms-linkedin').value;
+
+      document.getElementById('display-name').textContent = n;
+      document.getElementById('nav-brand-name').textContent = n;
+      document.getElementById('display-role').textContent = r;
+      document.getElementById('display-bio').textContent = b;
+      document.getElementById('display-email').textContent = e;
+      document.getElementById('pill-email-link').href = `mailto:${e}`;
+      document.getElementById('btn-contact-me').href = `mailto:${e}`;
+      document.getElementById('display-phone').textContent = p;
+      document.getElementById('pill-phone-link').href = `tel:${p}`;
+      document.getElementById('display-linkedin').textContent = l.replace('https://', '');
+      document.getElementById('pill-linkedin-link').href = l;
+    }
+
+    function applyMotionCMS() {
+      const entrance = document.getElementById('toggle-entrance-anim').checked;
+      const ambient = document.getElementById('toggle-ambient-glow').checked;
+      particlesEnabled = document.getElementById('toggle-particles').checked;
+
+      if (entrance) {
+        document.body.classList.remove('entrance-disabled');
+        document.body.classList.add('entrance-enabled');
+      } else {
+        document.body.classList.add('entrance-disabled');
+        document.body.classList.remove('entrance-enabled');
+      }
+
+      const glow = document.getElementById('hero-ambient-glow');
+      if (ambient) {
+        glow.classList.remove('ambient-glow-hidden');
+      } else {
+        glow.classList.add('ambient-glow-hidden');
+      }
+    }
+
+    function updateMotionSpeed(val) {
+      document.documentElement.style.setProperty('--motion-speed', `${val}s`);
+      document.getElementById('motion-speed-label').textContent = `${val}s`;
+    }
+
+    function setSpeedPreset(val, label) {
+      document.getElementById('motion-speed-slider').value = val;
+      updateMotionSpeed(val);
+      document.getElementById('motion-speed-label').textContent = label;
+    }
+
+    function handleCertFileUpload(event, certKey) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          certData[certKey].img = e.target.result;
+          const thumb = document.getElementById(`${certKey}-thumb-img`);
+          if (thumb) thumb.src = e.target.result;
+          showToast(`Updated image for ${certKey.toUpperCase()}`);
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function handleNewCertFileUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          window.temporaryNewCertDataUrl = e.target.result;
+          showToast('Image uploaded ready for publish');
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function addNewCert() {
+      const title = document.getElementById('new-cert-title').value.trim() || 'New Certification';
+      const inst = document.getElementById('new-cert-inst').value.trim() || 'Accredited Authority';
+      const score = document.getElementById('new-cert-score').value.trim() || 'Verified';
+      const roll = document.getElementById('new-cert-roll').value.trim() || 'Cert ID: ' + Math.floor(Math.random()*899999 + 100000);
+      const customImg = window.temporaryNewCertDataUrl || document.getElementById('new-cert-url-input').value.trim() || 'https://lh3.googleusercontent.com/aida-public/AB6AXuB5CEq5CWqECuBIe7zQh0rPZyEqVGGG0RHj8fhCovD2AcPkgcJl6vDaoF3JzPvbdLGnNhFyhTFRFCy5ASfzHVnKPKxRquGV8WFDOEYMDHgAfVB2dnplws058hS0MxIkeXAkTDWRFrjaiJ1zUZs4nZzwd8CRoJc6ulf6DoTyGIydAKrohWR9n1a3S6a_AZXTw-6-zzZRtiov02ka4U_74mggfI4v7yRIGEalP3mVlYe-W_CSHRZq6H8ZJcP4jN-ab_PQzQ';
+
+      const key = 'cert_' + Date.now();
+      certData[key] = {
+        title: title,
+        img: customImg,
+        inst: inst,
+        roll: roll,
+        summary: `${title} issued by ${inst}.`
+      };
+
+      const container = document.getElementById('certifications-container');
+      const newCard = document.createElement('div');
+      newCard.className = 'p-5 rounded-2xl bg-[#171f33]/90 dark:bg-[#171f33]/90 light-card backdrop-blur-xl border border-white/10 shadow-xl flex flex-col gap-3';
+      newCard.innerHTML = `
+        <div class="flex items-start justify-between">
+          <div class="flex items-center gap-2">
+            <span class="p-2 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center">
+              <span class="material-symbols-outlined text-[22px]">verified</span>
+            </span>
+            <div>
+              <span class="px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-400 text-xs font-bold uppercase">${inst}</span>
+              <h3 class="text-base text-white dark:text-white light-text-title font-bold mt-0.5">${title}</h3>
+            </div>
+          </div>
+          <span class="text-xs font-bold px-2 py-1 rounded bg-[#222a3d] text-purple-300">${score}</span>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-300 light-text-sub">
+          Issued by <strong class="text-white dark:text-white light-text-title">${inst}</strong>. Roll / ID: ${roll}.
+        </p>
+        <div class="relative w-full rounded-xl overflow-hidden bg-slate-900 shadow-md cursor-pointer border border-white/10" onclick="openCertModal('${key}')">
+          <img src="${customImg}" alt="${title}" class="w-full h-44 object-contain bg-white">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-3">
+            <span class="text-xs text-white bg-[#0f172a]/90 px-2 py-1 rounded flex items-center gap-1">
+              <span class="material-symbols-outlined text-[16px] text-purple-400">zoom_in</span> Tap to Inspect
+            </span>
+          </div>
+        </div>
+        <button class="w-full py-2.5 rounded-xl bg-[#222a3d] text-purple-300 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 hover:bg-[#2d3449] transition-all border border-white/5" onclick="openCertModal('${key}')">
+          <span class="material-symbols-outlined text-[18px]">verified</span>
+          <span>View Verified Certificate</span>
+        </button>
+      `;
+      container.prepend(newCard);
+
+      // add tab to modal
+      const tabs = document.getElementById('cert-modal-tabs');
+      const newTabBtn = document.createElement('button');
+      newTabBtn.id = `tab-btn-${key}`;
+      newTabBtn.className = 'px-2.5 py-1 rounded-lg text-xs font-medium text-slate-300 light-text-sub whitespace-nowrap';
+      newTabBtn.textContent = title;
+      newTabBtn.onclick = () => switchCertTab(key);
+      tabs.appendChild(newTabBtn);
+
+      showToast("New Certificate Published!");
+    }
+
+    function applyBurgerCartCMS() {
+      const t = document.getElementById('cms-p-title').value;
+      const d = document.getElementById('cms-p-desc').value;
+      const f = document.getElementById('cms-p-figma').value;
+      document.getElementById('burgercart-title').textContent = t;
+      document.getElementById('burgercart-desc').textContent = d;
+      currentFigmaUrl = f;
+      document.getElementById('figma-preview-card').href = f;
+    }
+
+    function applyInternCMS() {
+      const r = document.getElementById('cms-g-role').value;
+      const c = document.getElementById('cms-g-comp').value;
+      document.getElementById('genlab-role').textContent = r;
+      document.getElementById('genlab-company').textContent = c;
+    }
+
+    // 8. FIGMA PROTOTYPE
+    let currentFigmaUrl = "https://embed.figma.com/proto/cYkbl8N1molzjjULAC2lBk/Untitled?node-id=252-380&p=f&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=163%3A188&embed-host=share";
+    function launchPrototype() {
+      window.open(currentFigmaUrl, '_blank');
+    }
+
+    // 9. PERSISTENCE ENGINE (CLOUD SYNC & LOCAL FALLBACK)
+    async function persistDataToCloud() {
+      const payload = {
+        name: document.getElementById('cms-name').value,
+        role: document.getElementById('cms-role').value,
+        bio: document.getElementById('cms-bio').value,
+        email: document.getElementById('cms-email').value,
+        phone: document.getElementById('cms-phone').value,
+        linkedin: document.getElementById('cms-linkedin').value,
+        figmaUrl: currentFigmaUrl,
+        updatedAt: new Date().toISOString()
+      };
+
+      localStorage.setItem('portfolio_bala_data', JSON.stringify(payload));
+
+      if (supabaseClient) {
+        try {
+          const { error } = await supabaseClient
+            .from('portfolio_data')
+            .upsert({ id: 'primary_portfolio', content: payload, updated_at: new Date() });
+          if (error) {
+            console.warn("Supabase push note:", error.message);
+          } else {
+            console.log("Successfully pushed changes to Supabase cloud");
+          }
+        } catch (err) {
+          console.warn("Cloud sync network notice:", err);
+        }
+      }
+    }
+  </script>
+</body></html>
