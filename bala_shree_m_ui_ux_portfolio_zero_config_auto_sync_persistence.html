@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>Bala Shree M — UI/UX Designer Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-lowest": "#060e20",
+            "surface": "#0b1326",
+            "surface-card": "#171f33",
+            "surface-high": "#222a3d",
+            "surface-highest": "#2d3449",
+            "primary": "#c084fc",
+            "primary-glow": "#9333ea",
+            "secondary": "#818cf8",
+            "tertiary": "#4edea3"
+          },
+          fontFamily: {
+            sans: ["Plus Jakarta Sans", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    };
+</script>
+<style id="portfolio-dynamic-styles">    :root {
+      --motion-speed: 1s;
+    }
+
+    html, body {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      background-color: #0b1326;
+      color: #dae2fd;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    html:not(.dark) body {
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+    ::-webkit-scrollbar { display: none; }
+
+    #stardust-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 99990;
+    }
+
+    /* Reliable CSS Entrance Animations */
+    @keyframes heroFadeUp {
+      0% { opacity: 0; transform: translateY(40px) scale(0.96); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes slideUpTitle {
+      0% { opacity: 0; transform: translateY(100%); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes floatGentle {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .entrance-enabled .anim-hero-portrait {
+      animation: heroFadeUp calc(var(--motion-speed) * 1.2) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .hero-float {
+      animation: floatGentle 6s ease-in-out infinite alternate;
+    }
+    .entrance-enabled .anim-title {
+      animation: slideUpTitle calc(var(--motion-speed)) cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
+    }
+    .entrance-enabled .anim-role {
+      animation: heroFadeUp calc(var(--motion-speed) * 0.9) cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards;
+    }
+    .entrance-enabled .anim-bio {
+      animation: heroFadeUp calc(var(--motion-speed) * 0.9) cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+    }
+    .entrance-enabled .anim-btn {
+      animation: heroFadeUp calc(var(--motion-speed) * 0.9) cubic-bezier(0.16, 1, 0.3, 1) 0.75s forwards;
+    }
+    .entrance-enabled .anim-pills {
+      animation: heroFadeUp calc(var(--motion-speed) * 0.9) cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
+    }
+
+    .entrance-disabled .anim-hero-portrait,
+    .entrance-disabled .anim-title,
+    .entrance-disabled .anim-role,
+    .entrance-disabled .anim-bio,
+    .entrance-disabled .anim-btn,
+    .entrance-disabled .anim-pills {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity calc(var(--motion-speed) * 0.85) cubic-bezier(0.16, 1, 0.3, 1), transform calc(var(--motion-speed) * 0.85) cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-item.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .entrance-disabled .reveal-item {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+
+    /* Seamless portrait mask with soft radial vignette and bottom gradient fade */
+    .portrait-mask {
+      -webkit-mask-image: radial-gradient(ellipse 75% 82% at 50% 48%, rgba(0,0,0,1) 45%, rgba(0,0,0,0.85) 65%, rgba(0,0,0,0) 95%), linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 98%);
+      mask-image: radial-gradient(ellipse 75% 82% at 50% 48%, rgba(0,0,0,1) 45%, rgba(0,0,0,0.85) 65%, rgba(0,0,0,0) 95%), linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 98%);
+      -webkit-mask-composite: source-in;
+      mask-composite: intersect;
+    }
+
+    #hero-ambient-glow {
+      transition: opacity 0.5s ease;
+    }
+    .ambient-glow-hidden {
+      opacity: 0 !important;
+    }
+
+    /* Light Theme Styling Adapters */
+    html:not(.dark) .light-card {
+      background-color: #ffffff !important;
+      border-color: #e2e8f0 !important;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.06), 0 4px 6px -2px rgba(0,0,0,0.03) !important;
+    }
+    html:not(.dark) .light-subtle {
+      background-color: #f1f5f9 !important;
+      border-color: #e2e8f0 !important;
+    }
+    html:not(.dark) .light-text-title {
+      color: #0f172a !important;
+    }
+    html:not(.dark) .light-text-sub {
+      color: #334155 !important;
+    }
+    html:not(.dark) .light-nav {
+      background-color: rgba(255, 255, 255, 0.94) !important;
+      border-color: #e2e8f0 !important;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05) !important;
+    }
+    html:not(.dark) .light-hero-glow {
+      background: radial-gradient(circle, rgba(147, 51, 234, 0.18) 0%, rgba(99, 102, 241, 0.12) 45%, rgba(248, 250, 252, 0) 75%) !important;
+    }
+    html:not(.dark) .light-metric-box {
+      background-color: #f8fafc !important;
+      border-color: #e2e8f0 !important;
+    }
+    html:not(.dark) .light-contact-footer {
+      background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%) !important;
+      border-color: #cbd5e1 !important;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06) !important;
+    }
+    html:not(.dark) .light-contact-btn {
+      background-color: #f1f5f9 !important;
+      color: #0f172a !important;
+      border-color: #cbd5e1 !important;
+    }
+    html:not(.dark) .light-contact-btn:hover {
+      background-color: #e2e8f0 !important;
+    }
+    html:not(.dark) .light-preview-tray {
+      background-color: rgba(255, 255, 255, 0.95) !important;
+      border-color: #e2e8f0 !important;
+    }
+    html:not(.dark) #display-greeting {
+      color: #0f172a !important;
+    }
+    html:not(.dark) #display-name {
+      background-image: linear-gradient(135deg, #3730a3, #6d28d9, #9d174d) !important;
+      -webkit-background-clip: text !important;
+      background-clip: text !important;
+      color: transparent !important;
+      text-shadow: none !important;
+    }
+</style>
+</head>
+<body class="font-sans flex flex-col min-h-screen relative overflow-x-hidden entrance-enabled">
+<canvas id="stardust-canvas"></canvas>
+<!-- Notification Toast -->
+<div class="fixed top-20 right-5 z-[999999] px-4 py-2.5 rounded-xl bg-purple-900/90 dark:bg-purple-900/90 light-card border border-purple-400 text-white dark:text-white light-text-title text-xs font-semibold shadow-2xl backdrop-blur-md transition-all duration-300 transform translate-x-36 opacity-0 pointer-events-none flex items-center gap-2" id="toast">
+<span class="material-symbols-outlined text-[18px] text-emerald-400">check_circle</span>
+<span id="toast-text">Changes Applied</span>
+</div>
+<!-- FIXED HEADER -->
+<header class="fixed top-0 w-full z-50 bg-[#080e1c]/90 dark:bg-[#080e1c]/90 light-nav backdrop-blur-xl border-b border-white/5 transition-colors">
+<div class="h-16 max-w-4xl mx-auto px-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#7042f8] to-[#9333ea] flex items-center justify-center shadow-lg ring-1 ring-white/20">
+<span class="text-white font-extrabold text-[17px]">BS</span>
+</div>
+<div>
+<span class="font-bold text-[15px] leading-snug block text-white dark:text-white light-text-title" id="nav-brand-name">Bala Shree M</span>
+<span class="text-[#a5b4fc] dark:text-[#a5b4fc] light-text-sub text-[11px] font-medium" id="nav-brand-role">UI/UX Designer</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<!-- ADMIN LOGIN / CMS BUTTON -->
+<button class="h-9 px-3 rounded-xl bg-purple-950/40 dark:bg-purple-950/40 light-subtle border border-purple-500/40 hover:border-purple-400 text-purple-200 dark:text-purple-200 light-text-title text-xs font-semibold flex items-center gap-1.5 transition-all active:scale-95 shadow-sm" id="admin-trigger-btn" onclick="handleAdminTrigger()">
+<span class="material-symbols-outlined text-[16px] text-purple-400" id="admin-icon">lock</span>
+<span id="admin-label">Login</span>
+</button>
+<!-- THEME SWITCHER -->
+<button class="h-9 px-3 rounded-xl bg-[#171f33]/80 dark:bg-[#171f33]/80 light-card border border-white/10 hover:border-purple-400 flex items-center gap-2 text-slate-300 dark:text-slate-300 light-text-title transition-all active:scale-95" id="theme-btn" onclick="toggleTheme()">
+<span class="material-symbols-outlined text-[18px] text-amber-400" id="theme-icon">light_mode</span>
+<span class="text-xs font-semibold hidden sm:inline" id="theme-label">Light</span>
+</button>
+</div>
+</div>
+</header>
+<!-- MAIN PORTFOLIO BODY -->
+<main class="flex flex-col relative w-full pt-20 pb-28 flex-grow">
+<div class="w-full max-w-2xl mx-auto px-4 flex flex-col gap-14">
+<!-- 1. HERO SECTION WITH SEAMLESS BLENDED PORTRAIT CUTOUT -->
+<section class="flex flex-col items-center text-center pt-3 pb-2 relative" id="hero-section">
+<!-- Seamless Portrait Cutout with feathered edge mask -->
+<div class="anim-hero-portrait relative w-full max-w-[310px] mx-auto flex items-end justify-center bg-transparent opacity-0">
+<!-- Dynamic Glow behind photo -->
+<div class="absolute inset-0 bg-gradient-to-tr from-purple-600/30 via-indigo-500/20 to-pink-500/10 dark:from-purple-600/30 dark:via-indigo-500/20 dark:to-pink-500/10 light-hero-glow rounded-full blur-3xl pointer-events-none scale-110" id="hero-ambient-glow"></div>
+<div class="hero-float relative w-full flex items-end justify-center bg-transparent p-2">
+<img alt="Bala Shree M - UI/UX Designer" class="w-full h-auto max-h-[380px] object-contain portrait-mask bg-transparent select-none drop-shadow-[0_12px_28px_rgba(0,0,0,0.25)]" id="hero-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAK5_7T5rGHQE-WL76tg4_u9ui4zSX8kxDPTIjZYgv_fQKTBI3Cu9ORYxXxOZfiBafmnQs59gSzASpwi3vlaB_OnoAX9QHdINXgAkv1-uO_NuFozlbNhS0GnNj5FyOhx6S0pQbf7-a-ZdlZ7Tkruc61C4RnFccqH4RLV9nXBbCLUQwpnge7h80zhvfQvY7Q9EYm7_Fp4GdkOq7x4Bc5I2qhbW4t570TmnQZqti9YUTJDUsGGUcZVa5NM_pXmtn7ukH6qA"/>
+</div>
+</div>
+<!-- Headline Overlapping Fade -->
+<div class="-mt-4 relative z-20 flex flex-col items-center gap-3">
+<h1 class="text-4xl sm:text-5xl font-extrabold text-white dark:text-white light-text-title tracking-tight leading-[1.2] flex flex-wrap justify-center items-center gap-2">
+<span class="overflow-hidden inline-flex">
+<span class="anim-title opacity-0 text-white dark:text-white light-text-title" id="display-greeting">Hi, I'm</span>
+</span>
+<span class="overflow-hidden inline-flex">
+<span class="anim-title opacity-0 bg-gradient-to-r from-[#818cf8] via-[#c084fc] to-[#f472b6] bg-clip-text text-transparent drop-shadow-[0_2px_18px_rgba(192,132,252,0.35)]" id="display-name">Bala Shree M</span>
+</span>
+</h1>
+<!-- Role Badge -->
+<div class="anim-role opacity-0 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1e1438]/80 dark:bg-[#1e1438]/80 light-subtle border border-[#8b5cf6]/40 dark:border-[#8b5cf6]/40 shadow-[0_0_15px_rgba(139,92,246,0.25)] backdrop-blur-md">
+<span class="w-2 h-2 rounded-full bg-[#a855f7] shadow-[0_0_8px_#a855f7] animate-pulse"></span>
+<span class="text-xs font-semibold text-[#e9ddff] dark:text-[#e9ddff] light-text-title tracking-wide" id="display-role">• UI/UX Designer &amp; EEE Student</span>
+</div>
+<!-- Bio Narrative -->
+<p class="anim-bio opacity-0 text-sm sm:text-base text-[#cbd5e1] dark:text-[#cbd5e1] light-text-sub leading-relaxed max-w-md mx-auto px-2 mt-1" id="display-bio">
+  Aspiring UI/UX Designer with an Electrical and Electronics Engineering background (Student, 2023–2027), skilled in Figma, wireframing, prototyping, and user-centered design. Passionate about crafting intuitive and visually captivating digital experiences.
+</p>
+<!-- CTAs -->
+<div class="anim-btn opacity-0 flex flex-col sm:flex-row w-full max-w-xs sm:max-w-sm gap-3 pt-2">
+<a class="flex-1 py-3.5 px-6 rounded-2xl bg-gradient-to-r from-[#7c3aed] to-[#9333ea] hover:from-[#6d28d9] hover:to-[#7e22ce] text-white font-semibold text-sm sm:text-base flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(147,51,234,0.45)] border border-white/20 active:scale-95 transition-all" href="#projects-section">
+<span>Explore Projects</span>
+<span class="text-lg leading-none font-bold">↓</span>
+</a>
+<a class="flex-1 py-3 px-6 rounded-2xl bg-[#0f172a]/90 dark:bg-[#0f172a]/90 light-card text-white dark:text-white light-text-title font-medium text-sm sm:text-base flex items-center justify-center gap-2 border border-white/10 shadow-lg active:scale-95 transition-all" href="mailto:balashreem12@gmail.com" id="btn-contact-me">
+<span class="material-symbols-outlined text-[19px] text-[#c084fc]">mail</span>
+<span>Contact Me</span>
+</a>
+</div>
+<!-- Contact Pills -->
+<div class="anim-pills opacity-0 flex flex-col items-center w-full max-w-xs gap-2 pt-2">
+<div class="w-full py-2 px-4 rounded-xl bg-[#0e172a]/70 dark:bg-[#0e172a]/70 light-card border border-white/10 flex items-center justify-center gap-2 text-xs sm:text-sm text-[#cbd5e1] dark:text-[#cbd5e1] light-text-sub">
+<span class="text-[#a855f7]">📍</span>
+<span class="font-medium" id="display-location">Kanyakumari, Tamil Nadu</span>
+</div>
+<a class="w-full py-2 px-4 rounded-xl bg-[#0e172a]/70 dark:bg-[#0e172a]/70 light-card border border-white/10 hover:border-purple-400 flex items-center justify-center gap-2 text-xs sm:text-sm text-[#cbd5e1] dark:text-[#cbd5e1] light-text-sub transition-all" href="mailto:balashreem12@gmail.com" id="pill-email-link">
+<span class="text-[#a855f7]">✉</span>
+<span class="font-medium" id="display-email">balashreem12@gmail.com</span>
+</a>
+<a class="w-full py-2 px-4 rounded-xl bg-[#0e172a]/70 dark:bg-[#0e172a]/70 light-card border border-white/10 hover:border-purple-400 flex items-center justify-center gap-2 text-xs sm:text-sm text-[#cbd5e1] dark:text-[#cbd5e1] light-text-sub transition-all" href="tel:+918248905390" id="pill-phone-link">
+<span class="text-[#a855f7]">📞</span>
+<span class="font-medium" id="display-phone">+91 8248905390</span>
+</a>
+<a class="w-full py-2 px-4 rounded-xl bg-[#0e172a]/70 dark:bg-[#0e172a]/70 light-card border border-white/10 hover:border-purple-400 flex items-center justify-center gap-2 text-xs sm:text-sm text-[#cbd5e1] dark:text-[#cbd5e1] light-text-sub transition-all" href="https://linkedin.com/in/bala-shree-m" id="pill-linkedin-link" rel="noopener" target="_blank">
+<span class="text-[#a855f7]">🔗</span>
+<span class="font-medium" id="display-linkedin">linkedin.com/in/bala-shree-m</span>
+</a>
+</div>
+</div>
+</section>
+<!-- 2. SELECTED WORK & FIGMA PROTOTYPE SECTION -->
+<section class="flex flex-col gap-4 reveal-item" id="projects-section">
+<div class="flex items-end justify-between">
+<div>
+<span class="text-xs text-emerald-500 dark:text-emerald-400 tracking-wider uppercase font-semibold">Case Studies</span>
+<h2 class="text-xl sm:text-2xl text-white dark:text-white light-text-title font-bold">Selected Work</h2>
+</div>
+<span class="font-mono text-xs text-slate-400 dark:text-slate-400 light-text-sub" id="projects-count-badge">02 Cases</span>
+</div>
+<div class="flex flex-col gap-4" id="projects-container">
+<!-- BurgerCart Project -->
+<article class="p-5 rounded-2xl bg-[#171f33]/90 dark:bg-[#171f33]/90 light-card backdrop-blur-xl border border-white/10 shadow-xl flex flex-col gap-4" id="project-card-burgercart">
+<div class="flex items-start justify-between">
+<div class="flex flex-col gap-1">
+<div class="flex flex-wrap items-center gap-1.5" id="burgercart-tags-container">
+<span class="px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-700 dark:text-purple-300 text-xs font-semibold">Mobile App</span>
+<span class="px-2.5 py-0.5 rounded-full bg-[#222a3d] dark:bg-[#222a3d] light-subtle text-slate-300 dark:text-slate-300 light-text-sub text-xs">UX Research</span>
+<span class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs font-semibold">Figma High-Fi</span>
+</div>
+<h3 class="text-base sm:text-lg text-white dark:text-white light-text-title font-bold mt-1" id="burgercart-title">BurgerCart — Fast Food Delivery App</h3>
+</div>
+<span class="p-2 rounded-full bg-[#222a3d] dark:bg-[#222a3d] light-subtle text-purple-600 dark:text-purple-300 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">lunch_dining</span>
+</span>
+</div>
+<!-- Clickable Mockup Preview Card -->
+<a class="relative w-full h-48 rounded-xl overflow-hidden bg-[#060e20] shadow-inner flex flex-col justify-end p-3 group cursor-pointer border border-white/10 dark:border-white/10" href="https://embed.figma.com/proto/cYkbl8N1molzjjULAC2lBk/Untitled?node-id=252-380&amp;p=f&amp;scaling=scale-down&amp;content-scaling=fixed&amp;page-id=0%3A1&amp;starting-point-node-id=163%3A188&amp;embed-host=share" id="figma-preview-card" rel="noopener noreferrer" target="_blank">
+<img alt="BurgerCart Prototype Preview" class="absolute inset-0 w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0tg4ligYU4XFADIoGOc8MCXsgZX5gbX51n4AHTzvHY80AhIxTk3beWEf2sjC_4uQ6wV_woxKMj1amgA-BqWuDlurYvxPDpI2iYnN34K4dB2_ZH-xYRJk6nrvD9YH8qW8gZKqdeiivrnvlu_fl-pO25iOFw0P7h-nR2ar4E2h62JD-70agPSk1kI54JvfZtYFaoBfJyzCzF2Hd1pGcpw_If1e-oT3El0kUImUhfCirM1QnwNikJIA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#060e20] via-[#060e20]/50 to-transparent"></div>
+<div class="relative z-10 flex items-center justify-between">
+<div class="flex items-center gap-1.5 bg-[#2d3449]/90 dark:bg-[#2d3449]/90 light-preview-tray px-2.5 py-1 rounded-md border border-white/10 dark:border-white/10">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="font-mono text-xs text-white dark:text-white light-text-title font-medium">Flow: Browse → Customize → Pay</span>
+</div>
+<span class="text-xs text-white bg-purple-600 px-2 py-0.5 rounded flex items-center gap-1 font-semibold shadow-sm">
+<span>Figma Interactive</span>
+<span class="material-symbols-outlined text-[13px]">open_in_new</span>
+</span>
+</div>
+</a>
+<p class="text-xs sm:text-sm text-slate-300 dark:text-slate-300 light-text-sub leading-relaxed" id="burgercart-desc">
+  Engineered user flows, interactive wireframes, component design systems, and responsive layouts. Solved conversion drop-offs with streamlined customizer trays and clear nutritional labeling.
+</p>
+<!-- Metrics Strip -->
+<div class="grid grid-cols-3 gap-2 p-2.5 rounded-xl bg-[#131b2e] dark:bg-[#131b2e] light-metric-box border border-white/5 dark:border-white/5 text-center" id="burgercart-metrics">
+<div class="flex flex-col">
+<span class="text-base sm:text-lg text-purple-400 dark:text-purple-300 light-text-title font-bold" id="m1-val">38%</span>
+<span class="text-[11px] text-slate-400 dark:text-slate-400 light-text-sub" id="m1-lbl">Faster Checkout</span>
+</div>
+<div class="flex flex-col">
+<span class="text-base sm:text-lg text-emerald-500 dark:text-emerald-400 font-bold" id="m2-val">24+</span>
+<span class="text-[11px] text-slate-400 dark:text-slate-400 light-text-sub" id="m2-lbl">Custom Atoms</span>
+</div>
+<div class="flex flex-col">
+<span class="text-base sm:text-lg text-indigo-400 dark:text-indigo-300 light-text-title font-bold" id="m3-val">100%</span>
+<span class="text-[11px] text-slate-400 dark:text-slate-400 light-text-sub" id="m3-lbl">WCAG Compliant</span>
+</div>
+</div>
+<!-- Launch Button -->
+<button class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#9333ea] hover:opacity-95 text-white text-sm font-bold flex items-center justify-center gap-2 active:scale-95 transition-all shadow-[0_0_20px_rgba(124,58,237,0.4)]" id="btn-launch-prototype" onclick="launchPrototype()">
+<span class="material-symbols-outlined text-[20px]">preview</span>
+<span>Launch Figma Interactive Prototype</span>
+<span class="material-symbols-outlined text-[18px]">arrow_outward</span>
+</button>
+</article>
+<!-- WildShield AI Project -->
+<article class="p-5 rounded-2xl bg-[#171f33]/90 dark:bg-[#171f33]/90 light-card backdrop-blur-xl border border-white/10 shadow-xl flex flex-col gap-4">
+<div class="flex items-start justify-between">
+<div class="flex flex-col gap-1">
+<div class="flex flex-wrap items-center gap-1.5">
+<span class="px-2.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 text-xs font-semibold">Web Dashboard</span>
+<span class="px-2.5 py-0.5 rounded-full bg-[#222a3d] dark:bg-[#222a3d] light-subtle text-slate-300 dark:text-slate-300 light-text-sub text-xs">AI Forest Tech</span>
+<span class="px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-700 dark:text-white text-xs font-semibold">Role-Based UX</span>
+</div>
+<h3 class="text-base sm:text-lg text-white dark:text-white light-text-title font-bold mt-1">WildShield AI — Wildlife &amp; Forest Surveillance</h3>
+</div>
+<span class="p-2 rounded-full bg-[#222a3d] dark:bg-[#222a3d] light-subtle text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">nature</span>
+</span>
+</div>
+<div class="relative w-full h-40 rounded-xl overflow-hidden bg-[#060e20] shadow-inner flex flex-col justify-end p-3 border border-white/10">
+<img alt="WildShield AI Web Console" class="absolute inset-0 w-full h-full object-cover opacity-75" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdDi39aZJNLGyGtw_u-sxNJvmuHxeeXQpAbtY9da7A_LayD36xvNyYbWFGu995eeeSI98B2C6tPDA23Db0kwAW3r6_0uKNSSq1jHpHY8EfdAAkgKolGLt-VaO9wJkPFGFr2j0Op6vF2ZMREdMk9JLmZZlA0JX5kHs8CS4ZBqzSu7PAL0XuukEQbjsEG3m7AmEaxDAFoRzxHj53lPguz7WyTg9urAP6e0xDf1kkJPGivHKwCrCTJis"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#060e20] via-[#060e20]/40 to-transparent"></div>
+<div class="relative z-10 flex items-center justify-between">
+<span class="font-mono text-xs text-emerald-400 flex items-center gap-1 font-medium bg-[#060e20]/70 px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-[14px]">sensors</span> Real-time AI Vision Triage
+</span>
+<span class="text-xs text-slate-200 dark:text-slate-300 light-text-sub bg-[#222a3d]/90 dark:bg-[#222a3d]/80 light-preview-tray px-2 py-0.5 rounded">Admin • Officer • Viewer</span>
+</div>
+</div>
+<p class="text-xs sm:text-sm text-slate-300 dark:text-slate-300 light-text-sub leading-relaxed">
+  Crafted tailored dashboards with specific permission hierarchies: immediate SOS dispatch for patrol officers, holistic analytics for forest conservators, and audit trails for ecological researchers.
+</p>
+</article>
+</div>
+</section>
+<!-- 3. VERIFIED CERTIFICATIONS SECTION -->
+<section class="flex flex-col gap-4 reveal-item" id="certifications-section">
+<div class="flex items-end justify-between">
+<div>
+<span class="text-xs text-purple-600 dark:text-purple-400 tracking-wider uppercase font-semibold">Government &amp; Academia</span>
+<h2 class="text-xl sm:text-2xl text-white dark:text-white light-text-title font-bold">Verified Certifications</h2>
+</div>
+<span class="px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-700 dark:text-purple-300 font-mono text-xs font-semibold">NPTEL IIT</span>
+</div>
+<div class="flex flex-col gap-4" id="certifications-container">
+<!-- Cert 1: HCI (NPTEL) -->
+<div class="p-5 rounded-2xl bg-[#171f33]/90 dark:bg-[#171f33]/90 light-card backdrop-blur-xl border border-white/10 shadow-xl flex flex-col gap-3" id="cert-card-hci">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<span class="p-2 rounded-lg bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">workspace_premium</span>
+</span>
+<div>
+<span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-xs font-bold uppercase" id="hci-badge">Topper 2% • Elite</span>
+<h3 class="text-base text-white dark:text-white light-text-title font-bold mt-0.5" id="hci-title">Human Computer Interaction</h3>
+</div>
+</div>
+<span class="text-xl font-bold text-emerald-600 dark:text-emerald-400" id="hci-score">99%</span>
+</div>
+<p class="text-xs sm:text-sm text-slate-300 dark:text-slate-300 light-text-sub" id="hci-subdesc">
+  Issued by <strong class="text-white dark:text-white light-text-title" id="hci-institute-lbl">IIIT Delhi &amp; IIT Madras</strong> | Online Assignments: 25/25, Proctored Exam: 73.75/75. <span id="hci-roll-lbl">Roll: NPTEL26CS70S261700371</span>.
+</p>
+<div class="relative w-full h-44 rounded-xl overflow-hidden bg-[#060e20] shadow-inner cursor-pointer group border border-white/10" onclick="openCertModal('hci')">
+<img alt="NPTEL Human Computer Interaction Certificate" class="w-full h-full object-cover object-top opacity-95 group-hover:scale-105 transition-all duration-300" id="hci-thumb-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3fkGaURVN-mpYEO5nDNDH2G8TZECbfXwV_VyaQUhM6PQw8Wv9nVSU-rawcH0Zh5xCysc37OdiSr1IrpIeXiRbKpN35F8vSZFWC6H2LVhp-An0rlFWwjNEl6veJ9iNclxTKN8zDnl0_QuoxmySf39XXMLAOhAdOIdoOfJJpjzCqJW38YC5Qd65uenxMa4sCP-jx9JJvTgrf9Z-1FI177oIS_GmQSioEt7YEs42bEDvWjdDIs2ispapALk0t6OFh1kj"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#060e20]/80 via-transparent to-transparent flex items-end p-3">
+<span class="text-xs text-white bg-[#2d3449]/90 dark:bg-[#2d3449]/90 light-preview-tray px-2 py-1 rounded flex items-center gap-1 shadow-md light-text-title">
+<span class="material-symbols-outlined text-[16px] text-emerald-400">zoom_in</span> Tap to Inspect Verified Credential
+</span>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-xl bg-[#222a3d] dark:bg-[#222a3d] light-subtle text-purple-300 dark:text-purple-300 light-text-title text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 hover:bg-[#2d3449] transition-all border border-white/5" onclick="openCertModal('hci')">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>View Verified Certificate</span>
+</button>
+</div>
+<!-- Cert 2: UI Design (NPTEL) -->
+<div class="p-5 rounded-2xl bg-[#171f33]/90 dark:bg-[#171f33]/90 light-card backdrop-blur-xl border border-white/10 shadow-xl flex flex-col gap-3" id="cert-card-ui">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<span class="p-2 rounded-lg bg-purple-500/20 text-purple-600 dark:text-purple-300 flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">design_services</span>
+</span>
+<div>
+<span class="px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-700 dark:text-purple-300 text-xs font-bold uppercase" id="ui-badge">Elite Certified</span>
+<h3 class="text-base text-white dark:text-white light-text-title font-bold mt-0.5" id="ui-title">User Interface Design</h3>
+</div>
+</div>
+<span class="text-xl font-bold text-purple-400 dark:text-purple-300 light-text-title" id="ui-score">77%</span>
+</div>
+<p class="text-xs sm:text-sm text-slate-300 dark:text-slate-300 light-text-sub" id="ui-subdesc">
+  Issued by <strong class="text-white dark:text-white light-text-title" id="ui-institute-lbl">IIT Roorkee</strong> | Assignments: 23.83/25, Proctored Exam: 52.88/75. <span id="ui-roll-lbl">Roll: NPTEL26AR15S663400201</span>.
+</p>
+<div class="relative w-full h-44 rounded-xl overflow-hidden bg-[#060e20] shadow-inner cursor-pointer group border border-white/10" onclick="openCertModal('ui')">
+<img alt="NPTEL User Interface Design Certificate" class="w-full h-full object-cover object-top opacity-95 group-hover:scale-105 transition-all duration-300" id="ui-thumb-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvpvJbjB6QEk1gMhlhr4ZO0b4dILl7qEYE6-wbfUFGM0tqf3o46BqSi3jApNnsYcQfArHqyEX44s-QBle73AZEl_daFLSfh-IB9PTI6LzM5jXqh_PIgsY8V0oIBqUmyPQ64Qv9EA2Irc9yFoLdBYL4LTAtT1Kh6yp_Ij2NOOKxJJH4KGnmnCwcNvK75FJmRC_6PsiJNodMd_bqIbjnHIIkQAHR63C0LupwG6mF9vd33N75KupYevjWQUUoZFwOVfdb"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#060e20]/80 via-transparent to-transparent flex items-end p-3">
+<span class="text-xs text-white bg-[#2d3449]/90 dark:bg-[#2d3449]/90 light-preview-tray px-2 py-1 rounded flex items-center gap-1 shadow-md light-text-title">
+<span class="material-symbols-outlined text-[16px] text-purple-400">zoom_in</span> Tap to Inspect Verified Credential
+</span>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-xl bg-[#222a3d] dark:bg-[#222a3d] light-subtle text-purple-300 dark:text-purple-300 light-text-title text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 hover:bg-[#2d3449] transition-all border border-white/5" onclick="openCertModal('ui')">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>View Verified Certificate</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 4. EXPERIENCE & INTERNSHIPS SECTION -->
+<section class="flex flex-col gap-4 reveal-item" id="experience-section">
+<div class="flex items-end justify-between">
+<div>
+<span class="text-xs text-emerald-500 dark:text-emerald-400 tracking-wider uppercase font-semibold">Journey</span>
+<h2 class="text-xl sm:text-2xl text-white dark:text-white light-text-title font-bold">Experience &amp; Internships</h2>
+</div>
+</div>
+<div class="flex flex-col gap-4" id="internships-container">
+<!-- Internship 1: GenLab -->
+<div class="p-5 rounded-2xl bg-[#171f33]/90 dark:bg-[#171f33]/90 light-card backdrop-blur-xl border border-white/10 shadow-lg flex flex-col gap-3" id="intern-card-genlab">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-mono text-xs text-purple-400 dark:text-purple-300 font-semibold" id="genlab-dates">Apr 2026</span>
+<h3 class="text-base text-white dark:text-white light-text-title font-semibold" id="genlab-role">UI/UX Design Intern</h3>
+<p class="text-xs sm:text-sm text-slate-300 dark:text-slate-300 light-text-sub" id="genlab-company">GenLab Pvt. Ltd.</p>
+</div>
+<span class="px-2.5 py-0.5 rounded bg-purple-500/20 text-purple-700 dark:text-purple-300 text-xs font-semibold">Internship</span>
+</div>
+<ul class="flex flex-col gap-1.5 text-slate-300 dark:text-slate-300 light-text-sub text-xs sm:text-sm" id="genlab-bullets">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-purple-500 dark:text-purple-400 text-[16px] mt-0.5">check_circle</span>
+<span>Conducted foundational user interviews and empathy mapping for client digital platforms.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-purple-500 dark:text-purple-400 text-[16px] mt-0.5">check_circle</span>
+<span>Executed accessibility (WCAG 2.1) audits and delivered scalable design system tokens in Figma.</span>
+</li>
+</ul>
+<!-- Attached GenLab Certificate -->
+<div class="relative w-full h-40 rounded-xl overflow-hidden bg-[#060e20] shadow-inner cursor-pointer group border border-white/10 mt-1" onclick="openCertModal('genlab')">
+<img alt="GenLab Certificate of Completion" class="w-full h-full object-cover object-center opacity-90 group-hover:scale-105 transition-all duration-300" id="genlab-preview-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHmj3mWV4EXh9yuYHpS23T8mjcMESGjsDK31hQ2vRSAt6KvJAldqGFgZFITE1iuSpv5jHhncENd6CgoRcHwS2RG-fpUr5zqDHwSCsrRfoLCyfeTUnCQAP_dvg4pPm4-gc-jaTRLyrviV-0ubhRR-166WYLmacPX85Z2ni0FX6bG_bNCxuyf-hAHb_xc0gQOrKF0ceTYcRIxJjwqNqH_ne9WFA2wddF6w3v1WgjVaXuEIy0I9khV-MhC4Xdt1OYL9W7sg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
+<span class="text-xs text-white bg-black/70 px-2 py-1 rounded flex items-center gap-1 backdrop-blur-sm">
+<span class="material-symbols-outlined text-[16px] text-emerald-400">zoom_in</span> Tap to Inspect Certificate
+</span>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-xl bg-[#222a3d] dark:bg-[#222a3d] light-subtle hover:bg-[#2d3449] text-purple-300 dark:text-purple-300 light-text-title text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all border border-white/5" onclick="openCertModal('genlab')">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>View Internship Certificate</span>
+</button>
+</div>
+<!-- Internship 2: TVK Technologies -->
+<div class="p-5 rounded-2xl bg-[#171f33]/90 dark:bg-[#171f33]/90 light-card backdrop-blur-xl border border-white/10 shadow-lg flex flex-col gap-3" id="intern-card-tvk">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-mono text-xs text-emerald-600 dark:text-emerald-400 font-semibold" id="tvk-dates">Jun 2026</span>
+<h3 class="text-base text-white dark:text-white light-text-title font-semibold" id="tvk-role">Full Stack Development Intern</h3>
+<p class="text-xs sm:text-sm text-slate-300 dark:text-slate-300 light-text-sub" id="tvk-company">TVK Technologies</p>
+</div>
+<span class="px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-xs font-semibold">Internship</span>
+</div>
+<ul class="flex flex-col gap-1.5 text-slate-300 dark:text-slate-300 light-text-sub text-xs sm:text-sm" id="tvk-bullets">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-emerald-500 dark:text-emerald-400 text-[16px] mt-0.5">check_circle</span>
+<span>Architected responsive frontend views using HTML5, modern CSS, and component frameworks.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-emerald-500 dark:text-emerald-400 text-[16px] mt-0.5">check_circle</span>
+<span>Bridged developer-designer handoff to achieve pixel-perfect fidelity from prototypes to code.</span>
+</li>
+</ul>
+<!-- Attached TVK Letter -->
+<div class="relative w-full h-40 rounded-xl overflow-hidden bg-[#060e20] shadow-inner cursor-pointer group border border-white/10 mt-1" onclick="openCertModal('tvk')">
+<img alt="TVK Technologies Completion Letter" class="w-full h-full object-cover object-top opacity-90 group-hover:scale-105 transition-all duration-300" id="tvk-preview-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeiut2Mi2VIy43SOMMAeuUgVpInUuQe2CM7c7XcR6xgcBBcXZPCi-dxh2bPpGujlN8l_YPZ8pO5VODTiDFZFA7h4UERoivYe-DrO_5zxdwEiLjcQVa3kJfF8TykpeUzhcvln6QB6oocYMWQgJDA6u_gjwn0l2iW1Mg9ZYuDFZd5bR0x7nZg5kdlP0svc7qtdJV4r6mW5HCtiduADYDiQjX7CKhLjT-kyW7W0JWE6HUxaNL4Jv7ATsRg85bfQqSuH5u8g"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
+<span class="text-xs text-white bg-black/70 px-2 py-1 rounded flex items-center gap-1 backdrop-blur-sm">
+<span class="material-symbols-outlined text-[16px] text-emerald-400">zoom_in</span> Tap to Inspect Completion Letter
+</span>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-xl bg-[#222a3d] dark:bg-[#222a3d] light-subtle hover:bg-[#2d3449] text-emerald-600 dark:text-emerald-400 light-text-title text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all border border-white/5" onclick="openCertModal('tvk')">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>View Completion Letter</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 5. SKILLS & TOOLSET -->
+<section class="flex flex-col gap-4 reveal-item" id="skills-section">
+<div class="flex items-end justify-between">
+<div>
+<span class="text-xs text-purple-600 dark:text-purple-400 tracking-wider uppercase font-semibold">Capabilities</span>
+<h2 class="text-xl sm:text-2xl text-white dark:text-white light-text-title font-bold">Skills &amp; Toolset</h2>
+</div>
+</div>
+<div class="grid grid-cols-1 gap-3">
+<div class="p-4 rounded-xl bg-[#171f33]/90 dark:bg-[#171f33]/90 light-card backdrop-blur-xl border border-white/10 shadow-md flex flex-col gap-2">
+<div class="flex items-center gap-2 text-purple-400 dark:text-purple-400">
+<span class="material-symbols-outlined text-[20px] text-purple-600 dark:text-purple-400">brush</span>
+<h3 class="text-sm font-semibold text-white dark:text-white light-text-title">Design &amp; UX Strategy</h3>
+</div>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2.5 py-1 rounded-full bg-[#222a3d] dark:bg-[#222a3d] light-subtle text-xs text-white dark:text-white light-text-title border border-transparent dark:border-transparent light:border-slate-200">User-Centered Design (UCD)</span>
+<span class="px-2.5 py-1 rounded-full bg-[#222a3d] dark:bg-[#222a3d] light-subtle text-xs text-white dark:text-white light-text-title border border-transparent">Wireframing</span>
+<span class="px-2.5 py-1 rounded-full bg-[#222a3d] dark:bg-[#222a3d] light-subtle text-xs text-white dark:text-white light-text-title border border-transparent">Design Systems</span>
+<span class="px-2.5 py-1 rounded-full bg-[#222a3d] dark:bg-[#222a3d] light-subtle text-xs text-white dark:text-white light-text-title border border-transparent">Information Architecture</span>
+<span class="px-2.5 py-1 rounded-full bg-[#222a3d] dark:bg-[#222a3d] light-subtle text-xs text-white dark:text-white light-text-title border border-transparent">Interactive Prototyping</span>
+<span class="px-2.5 py-1 rounded-full bg-[#222a3d] dark:bg-[#222a3d] light-subtle text-xs text-white dark:text-white light-text-title border border-transparent">Usability Testing</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. CONTACT FOOTER -->
+<section class="p-6 rounded-2xl bg-gradient-to-br from-[#222a3d] via-[#171f33] to-[#131b2e] dark:from-[#222a3d] dark:via-[#171f33] dark:to-[#131b2e] light-contact-footer border border-white/10 shadow-2xl flex flex-col gap-4 text-center reveal-item">
+<div class="flex flex-col items-center gap-1">
+<span class="text-xs text-emerald-500 dark:text-emerald-400 uppercase tracking-wider font-semibold">Let's Build Something Memorable</span>
+<h2 class="text-lg sm:text-xl text-white dark:text-white light-text-title font-bold">Have a project or internship opening?</h2>
+<p class="text-xs sm:text-sm text-slate-300 dark:text-slate-300 light-text-sub max-w-sm mt-1">
+  Currently open to full-time UI/UX design internships, junior product designer roles, and freelance consulting.
+</p>
+</div>
+<div class="flex flex-col gap-2.5 w-full max-w-xs mx-auto">
+<a class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#9333ea] text-white text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 active:scale-95 transition-all shadow-[0_0_20px_rgba(124,58,237,0.35)]" href="mailto:balashreem12@gmail.com">
+<span class="material-symbols-outlined text-[18px]">send</span>
+<span>Send Direct Message</span>
+</a>
+<a class="w-full py-2.5 px-4 rounded-xl bg-[#2d3449] dark:bg-[#2d3449] light-contact-btn border border-white/5 text-white dark:text-white light-text-title text-xs sm:text-sm font-medium flex items-center justify-center gap-2 active:scale-95 transition-all" href="https://linkedin.com/in/bala-shree-m" rel="noopener" target="_blank">
+<span class="material-symbols-outlined text-[16px] text-purple-400">share</span>
+<span>Connect on LinkedIn</span>
+</a>
+</div>
+</section>
+</div>
+</main>
+<!-- FIXED BOTTOM DOCK -->
+<nav class="fixed bottom-0 w-full z-50 bg-[#080e1c]/90 dark:bg-[#080e1c]/90 light-nav backdrop-blur-xl border-t border-white/5 transition-colors">
+<div class="flex items-center justify-between h-16 max-w-4xl mx-auto px-4">
+<div class="flex items-center gap-3">
+<a class="px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-purple-500 dark:text-purple-400 text-xs font-semibold" href="#projects-section">
+<span class="material-symbols-outlined text-[18px]">grid_view</span>
+<span>Work</span>
+</a>
+<a class="px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-slate-400 dark:text-slate-300 light-text-sub hover:text-purple-600 text-xs font-medium" href="#certifications-section">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Certs</span>
+</a>
+<a class="px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-slate-400 dark:text-slate-300 light-text-sub hover:text-purple-600 text-xs font-medium" href="#experience-section">
+<span class="material-symbols-outlined text-[18px]">badge</span>
+<span>Experience</span>
+</a>
+</div>
+<div class="flex items-center gap-1.5 bg-[#222a3d]/80 dark:bg-[#222a3d]/80 light-subtle px-2 py-1 rounded-full border border-white/10">
+<a class="w-8 h-8 rounded-full flex items-center justify-center text-slate-300 dark:text-slate-300 light-text-sub hover:text-purple-500" href="mailto:balashreem12@gmail.com" title="Email Bala">
+<span class="material-symbols-outlined text-[16px]">alternate_email</span>
+</a>
+<a class="w-8 h-8 rounded-full flex items-center justify-center text-slate-300 dark:text-slate-300 light-text-sub hover:text-purple-500" href="https://linkedin.com/in/bala-shree-m" rel="noopener" target="_blank" title="LinkedIn">
+<span class="material-symbols-outlined text-[16px]">share</span>
+</a>
+<a class="w-8 h-8 rounded-full flex items-center justify-center text-purple-300 dark:text-purple-300 light-text-title bg-[#2d3449] dark:bg-[#2d3449] light-card shadow-sm" href="tel:+918248905390" title="Call Bala">
+<span class="material-symbols-outlined text-[16px]">call</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- DYNAMIC CERTIFICATE MODAL -->
+<div class="fixed inset-0 z-[99999] bg-black/85 backdrop-blur-md hidden flex-col justify-center items-center p-4" id="cert-modal">
+<div class="w-full max-w-lg bg-[#171f33] dark:bg-[#171f33] light-card rounded-2xl shadow-2xl flex flex-col overflow-hidden max-h-[90vh] relative border border-white/10">
+<div class="flex items-center justify-between px-3 py-2 bg-[#222a3d] dark:bg-[#222a3d] light-subtle border-b border-white/5">
+<div class="flex items-center gap-1 overflow-x-auto py-1" id="cert-modal-tabs">
+<button class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-purple-400 text-slate-900 whitespace-nowrap" id="tab-btn-hci" onclick="switchCertTab('hci')">HCI (99%)</button>
+<button class="px-2.5 py-1 rounded-lg text-xs font-medium text-slate-300 light-text-sub whitespace-nowrap" id="tab-btn-ui" onclick="switchCertTab('ui')">UI (77%)</button>
+<button class="px-2.5 py-1 rounded-lg text-xs font-medium text-slate-300 light-text-sub whitespace-nowrap" id="tab-btn-genlab" onclick="switchCertTab('genlab')">GenLab</button>
+<button class="px-2.5 py-1 rounded-lg text-xs font-medium text-slate-300 light-text-sub whitespace-nowrap" id="tab-btn-tvk" onclick="switchCertTab('tvk')">TVK Tech</button>
+</div>
+<button class="p-1 rounded-lg bg-[#2d3449] dark:bg-[#2d3449] light-card text-slate-300 dark:text-slate-300 light-text-title hover:text-white shrink-0 ml-2" onclick="closeCertModal()">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<div class="relative w-full flex-grow overflow-auto p-3 bg-[#060e20] flex items-center justify-center min-h-[220px]">
+<img alt="Verified Certificate" class="w-full h-auto object-contain rounded-lg shadow-lg max-h-[55vh]" id="cert-display-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3fkGaURVN-mpYEO5nDNDH2G8TZECbfXwV_VyaQUhM6PQw8Wv9nVSU-rawcH0Zh5xCysc37OdiSr1IrpIeXiRbKpN35F8vSZFWC6H2LVhp-An0rlFWwjNEl6veJ9iNclxTKN8zDnl0_QuoxmySf39XXMLAOhAdOIdoOfJJpjzCqJW38YC5Qd65uenxMa4sCP-jx9JJvTgrf9Z-1FI177oIS_GmQSioEt7YEs42bEDvWjdDIs2ispapALk0t6OFh1kj"/>
+</div>
+<div class="p-4 bg-[#222a3d] dark:bg-[#222a3d] light-subtle flex flex-col gap-1 border-t border-white/5">
+<div class="flex items-center justify-between">
+<span class="text-xs text-purple-400 dark:text-purple-300 light-text-title font-bold" id="cert-institute">IIIT Delhi &amp; IIT Madras</span>
+<span class="font-mono text-xs text-slate-400 dark:text-slate-400 light-text-sub" id="cert-roll">Roll: NPTEL26CS70S261700371</span>
+</div>
+<p class="text-xs text-slate-300 dark:text-slate-300 light-text-sub" id="cert-summary">Elite + Topper (Top 2%) in Human Computer Interaction. Proctored examination score: 99%.</p>
+</div>
+</div>
+</div>
+<!-- ADMIN AUTH MODAL -->
+<div class="fixed inset-0 z-[99999] bg-black/85 backdrop-blur-md hidden flex-col justify-center items-center p-4" id="admin-modal">
+<div class="w-full max-w-sm bg-[#171f33] dark:bg-[#171f33] light-card rounded-2xl shadow-2xl p-6 border border-purple-500/30 flex flex-col gap-4 relative">
+<button class="absolute top-4 right-4 p-1 rounded-lg text-slate-400 hover:text-white" onclick="closeAdminModal()">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-purple-600/20 text-purple-400 flex items-center justify-center border border-purple-500/30">
+<span class="material-symbols-outlined text-[22px]">admin_panel_settings</span>
+</div>
+<div>
+<h3 class="text-base font-bold text-white dark:text-white light-text-title">Admin Authentication</h3>
+<p class="text-xs text-slate-400 light-text-sub">Enter credentials to edit portfolio content</p>
+</div>
+</div>
+<div class="flex flex-col gap-3 mt-1">
+<div>
+<label class="text-xs font-semibold text-slate-300 light-text-title">Username</label>
+<input class="w-full mt-1 px-3 py-2 rounded-xl bg-[#0b1326] dark:bg-[#0b1326] light-subtle border border-white/10 text-white dark:text-white light-text-title text-xs focus:outline-none focus:border-purple-500" id="admin-user-input" placeholder="bala@1234" type="text"/>
+</div>
+<div>
+<label class="text-xs font-semibold text-slate-300 light-text-title">Password</label>
+<input class="w-full mt-1 px-3 py-2 rounded-xl bg-[#0b1326] dark:bg-[#0b1326] light-subtle border border-white/10 text-white dark:text-white light-text-title text-xs focus:outline-none focus:border-purple-500" id="admin-pass-input" placeholder="••••••••" type="password"/>
+</div>
+<p class="text-xs text-rose-400 font-medium hidden" id="admin-error-msg">Invalid credentials. Please verify your login.</p>
+</div>
+<button class="w-full py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-xs font-bold shadow-lg active:scale-95 transition-all" onclick="submitAdminLogin()">
+  Authenticate &amp; Open CMS
+</button>
+</div>
+</div>
+<!-- EXPANDED 5-TAB CMS LIVE MANAGEMENT PANEL -->
+<div class="fixed inset-y-0 right-0 w-full sm:w-[500px] bg-[#171f33] dark:bg-[#171f33] light-card shadow-2xl border-l border-white/10 hidden flex-col z-[99999] overflow-hidden" id="cms-panel">
+<div class="flex items-center justify-between p-4 border-b border-white/10 bg-[#131b2e] dark:bg-[#131b2e] light-subtle">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+<div>
+<h3 class="text-sm font-bold text-white dark:text-white light-text-title">Portfolio CMS &amp; Dynamic Studio</h3>
+<span class="text-[10px] text-purple-300">Live motion studio, cert uploads &amp; content</span>
+</div>
+</div>
+<button class="p-1 rounded-lg text-slate-400 hover:text-white" onclick="toggleCMSPanel()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- 5 CMS Tabs -->
+<div class="flex items-center bg-[#0b1326] px-2 py-1.5 border-b border-white/10 gap-1 overflow-x-auto">
+<button class="px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-purple-600 text-white whitespace-nowrap" id="cms-btn-1" onclick="switchCMSTab(1)">Hero &amp; Bio</button>
+<button class="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-300 whitespace-nowrap" id="cms-btn-2" onclick="switchCMSTab(2)">Motion &amp; VFX</button>
+<button class="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-300 whitespace-nowrap" id="cms-btn-3" onclick="switchCMSTab(3)">Certificates</button>
+<button class="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-300 whitespace-nowrap" id="cms-btn-4" onclick="switchCMSTab(4)">Prototypes</button>
+<button class="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-300 whitespace-nowrap" id="cms-btn-5" onclick="switchCMSTab(5)">Internships</button><button class="px-2.5 py-1.5 rounded-lg text-xs font-medium text-emerald-400 border border-emerald-500/30 whitespace-nowrap flex items-center gap-1" id="cms-btn-6" onclick="switchCMSTab(6)"><span class="material-symbols-outlined text-[14px]">cloud_sync</span> Cloud Sync</button>
+</div>
+<div class="flex-grow overflow-y-auto p-4 flex flex-col gap-4 text-xs">
+<!-- PANE 1: HERO & BIO -->
+<div class="flex flex-col gap-3" id="cms-pane-1">
+<div>
+<label class="font-semibold text-purple-300">Display Name</label>
+<input class="w-full mt-1 p-2 rounded-lg bg-[#0b1326] border border-white/10 text-white text-xs" id="cms-name" oninput="applyHeroCMS()" type="text" value="Bala Shree M"/>
+</div>
+<div>
+<label class="font-semibold text-purple-300">Role Badge</label>
+<input class="w-full mt-1 p-2 rounded-lg bg-[#0b1326] border border-white/10 text-white text-xs" id="cms-role" oninput="applyHeroCMS()" type="text" value="• UI/UX Designer &amp; EEE Student"/>
+</div>
+<div>
+<label class="font-semibold text-purple-300">Bio Narrative</label>
+<textarea class="w-full mt-1 p-2 rounded-lg bg-[#0b1326] border border-white/10 text-white text-xs leading-relaxed" id="cms-bio" oninput="applyHeroCMS()" rows="4">Aspiring UI/UX Designer with an Electrical and Electronics Engineering background (Student, 2023–2027), skilled in Figma, wireframing, prototyping, and user-centered design. Passionate about crafting intuitive and visually captivating digital experiences.</textarea>
+</div>
+<div>
+<label class="font-semibold text-purple-300">Email Address</label>
+<input class="w-full mt-1 p-2 rounded-lg bg-[#0b1326] border border-white/10 text-white text-xs" id="cms-email" oninput="applyHeroCMS()" type="text" value="balashreem12@gmail.com"/>
+</div>
+<div>
+<label class="font-semibold text-purple-300">Phone</label>
+<input class="w-full mt-1 p-2 rounded-lg bg-[#0b1326] border border-white/10 text-white text-xs" id="cms-phone" oninput="applyHeroCMS()" type="text" value="+91 8248905390"/>
+</div>
+<div>
+<label class="font-semibold text-purple-300">LinkedIn URL</label>
+<input class="w-full mt-1 p-2 rounded-lg bg-[#0b1326] border border-white/10 text-white text-xs" id="cms-linkedin" oninput="applyHeroCMS()" type="text" value="https://linkedin.com/in/bala-shree-m"/>
+</div>
+</div>
+<!-- PANE 2: MOTION -->
+<div class="hidden flex-col gap-4" id="cms-pane-2">
+<div class="p-3.5 rounded-xl bg-[#0b1326] border border-purple-500/30 flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div>
+<h4 class="font-bold text-white text-xs flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-purple-400">animation</span>
+Entrance Animations
+</h4>
+<p class="text-[11px] text-slate-400">Toggle staggered hero cascade &amp; scroll reveals</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" id="toggle-entrance-anim" onchange="applyMotionCMS()" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+</label>
+</div>
+<div class="flex flex-col gap-2 pt-2 border-t border-white/5">
+<div class="flex items-center justify-between">
+<label class="text-[11px] font-semibold text-slate-300">Animation Speed Duration</label>
+<span class="font-mono text-purple-300 text-xs font-bold" id="motion-speed-label">1.0s (Normal)</span>
+</div>
+<input class="w-full accent-purple-500 h-1.5 bg-slate-800 rounded-lg cursor-pointer" id="motion-speed-slider" max="2.2" min="0.4" oninput="updateMotionSpeed(this.value)" step="0.1" type="range" value="1.0"/>
+<div class="grid grid-cols-3 gap-2 mt-1">
+<button class="py-1 rounded bg-[#171f33] hover:bg-purple-600/30 border border-white/10 text-[11px] text-slate-300" onclick="setSpeedPreset(0.5, '0.5s (Fast)')">⚡ Fast (0.5s)</button>
+<button class="py-1 rounded bg-[#171f33] hover:bg-purple-600/30 border border-purple-500/40 text-[11px] text-purple-200" onclick="setSpeedPreset(1.0, '1.0s (Normal)')">✨ Normal (1.0s)</button>
+<button class="py-1 rounded bg-[#171f33] hover:bg-purple-600/30 border border-white/10 text-[11px] text-slate-300" onclick="setSpeedPreset(1.6, '1.6s (Slow)')">🌿 Slow (1.6s)</button>
+</div>
+</div>
+</div>
+<div class="p-3.5 rounded-xl bg-[#0b1326] border border-white/10 flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div>
+<h4 class="font-bold text-white text-xs flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-emerald-400">auto_awesome</span>
+Cursor Stardust Particles
+</h4>
+<p class="text-[11px] text-slate-400">Trailing chromatic particle canvas upon mouse move</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" id="toggle-particles" onchange="applyMotionCMS()" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500"></div>
+</label>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-white/5">
+<div>
+<h4 class="font-bold text-white text-xs flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-amber-400">lens_blur</span>
+Ambient Portrait Spotlight Glow
+</h4>
+<p class="text-[11px] text-slate-400">Subtle purple/pink atmospheric gradient behind photo</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" id="toggle-ambient-glow" onchange="applyMotionCMS()" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+</label>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold flex items-center justify-center gap-1.5 active:scale-95 transition-all shadow-lg" onclick="applyMotionCMS(); replayHeroAnimation(); showToast('Motion settings applied &amp; replayed!')">
+<span class="material-symbols-outlined text-[18px]">play_circle</span>
+<span>Apply &amp; Replay Entrance Flow</span>
+</button>
+</div>
+<!-- PANE 3: CERTIFICATES -->
+<div class="hidden flex-col gap-4" id="cms-pane-3">
+<div class="p-3.5 rounded-xl bg-[#0b1326] border border-white/10 flex flex-col gap-2.5">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-emerald-400">Edit HCI Certificate (99%)</span>
+<span class="text-[10px] text-slate-400">NPTEL IIT</span>
+</div>
+<div class="flex gap-2">
+<input class="flex-grow p-1.5 rounded bg-[#171f33] border border-white/10 text-white text-xs" id="cms-hci-t" oninput="applyCertCMS()" type="text" value="Human Computer Interaction"/>
+<input class="w-16 p-1.5 rounded bg-[#171f33] border border-white/10 text-white text-xs font-bold text-center" id="cms-hci-s" oninput="applyCertCMS()" type="text" value="99%"/>
+</div>
+<input class="w-full p-1.5 rounded bg-[#171f33] border border-white/10 text-white text-xs" id="cms-hci-i" oninput="applyCertCMS()" type="text" value="IIIT Delhi &amp; IIT Madras"/>
+<input class="w-full p-1.5 rounded bg-[#171f33] border border-white/10 text-white text-xs" id="cms-hci-r" oninput="applyCertCMS()" type="text" value="Roll: NPTEL26CS70S261700371"/>
+<div class="flex flex-col gap-1.5 pt-1">
+<label class="text-[11px] font-semibold text-purple-300">Replace Certificate Image:</label>
+<div class="flex items-center gap-2">
+<label class="cursor-pointer px-2.5 py-1.5 rounded bg-[#222a3d] hover:bg-[#2d3449] border border-purple-500/30 text-white text-xs flex items-center gap-1 active:scale-95">
+<span class="material-symbols-outlined text-[16px] text-emerald-400">upload_file</span>
+<span>Upload Local File</span>
+<input accept="image/*" class="hidden" onchange="handleCertFileUpload(event, 'hci')" type="file"/>
+</label>
+<input class="flex-grow p-1.5 rounded bg-[#171f33] border border-white/10 text-white text-[11px]" id="cms-hci-img-url" onchange="updateCertImgByUrl('hci', this.value)" placeholder="Or paste image URL" type="text"/>
+</div>
+</div>
+</div>
+<div class="p-3.5 rounded-xl bg-[#0b1326] border border-white/10 flex flex-col gap-2.5">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-purple-300">Edit UI Design Certificate (77%)</span>
+<span class="text-[10px] text-slate-400">IIT Roorkee</span>
+</div>
+<div class="flex gap-2">
+<input class="flex-grow p-1.5 rounded bg-[#171f33] border border-white/10 text-white text-xs" id="cms-ui-t" oninput="applyCertCMS()" type="text" value="User Interface Design"/>
+<input class="w-16 p-1.5 rounded bg-[#171f33] border border-white/10 text-white text-xs font-bold text-center" id="cms-ui-s" oninput="applyCertCMS()" type="text" value="77%"/>
+</div>
+<input class="w-full p-1.5 rounded bg-[#171f33] border border-white/10 text-white text-xs" id="cms-ui-i" oninput="applyCertCMS()" type="text" value="IIT Roorkee"/>
+<input class="w-full p-1.5 rounded bg-[#171f33] border border-white/10 text-white text-xs" id="cms-ui-r" oninput="applyCertCMS()" type="text" value="Roll: NPTEL26AR15S663400201"/>
+<div class="flex flex-col gap-1.5 pt-1">
+<label class="text-[11px] font-semibold text-purple-300">Replace Certificate Image:</label>
+<div class="flex items-center gap-2">
+<label class="cursor-pointer px-2.5 py-1.5 rounded bg-[#222a3d] hover:bg-[#2d3449] border border-purple-500/30 text-white text-xs flex items-center gap-1 active:scale-95">
+<span class="material-symbols-outlined text-[16px] text-purple-400">upload_file</span>
+<span>Upload Local File</span>
+<input accept="image/*" class="hidden" onchange="handleCertFileUpload(event, 'ui')" type="file"/>
+</label>
+<input class="flex-grow p-1.5 rounded bg-[#171f33] border border-white/10 text-white text-[11px]" id="cms-ui-img-url" onchange="updateCertImgByUrl('ui', this.value)" placeholder="Or paste image URL" type="text"/>
+</div>
+</div>
+</div>
+<div class="p-3.5 rounded-xl bg-purple-950/30 border border-purple-500/30 flex flex-col gap-2.5">
+<span class="text-xs font-bold text-purple-300 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">add_circle</span>
+Add New Certificate &amp; Upload Proof
+</span>
+<input class="w-full p-1.5 rounded bg-[#0b1326] border border-white/10 text-white text-xs" id="new-cert-title" placeholder="Certificate Course Name (e.g. Interaction Design Spec)" type="text"/>
+<div class="flex gap-2">
+<input class="flex-grow p-1.5 rounded bg-[#0b1326] border border-white/10 text-white text-xs" id="new-cert-inst" placeholder="Issuing Institution (e.g. UC San Diego / Coursera)" type="text"/>
+<input class="w-24 p-1.5 rounded bg-[#0b1326] border border-white/10 text-white text-xs" id="new-cert-score" placeholder="Score (95%)" type="text"/>
+</div>
+<input class="w-full p-1.5 rounded bg-[#0b1326] border border-white/10 text-white text-xs" id="new-cert-roll" placeholder="Roll No / Credential Verification ID" type="text"/>
+<div class="p-2.5 rounded-lg bg-[#0b1326]/80 border border-white/10 flex flex-col gap-2">
+<span class="text-[11px] font-semibold text-slate-300">Certificate Image / Proof:</span>
+<div class="flex items-center gap-2">
+<label class="cursor-pointer px-3 py-1.5 rounded bg-purple-600 hover:bg-purple-500 text-white text-xs font-medium flex items-center gap-1 shrink-0 active:scale-95 shadow">
+<span class="material-symbols-outlined text-[16px]">upload</span>
+<span>Upload Proof File</span>
+<input accept="image/*" class="hidden" id="new-cert-file-input" onchange="handleNewCertFileUpload(event)" type="file"/>
+</label>
+<input class="flex-grow p-1.5 rounded bg-[#171f33] border border-white/10 text-white text-xs" id="new-cert-url-input" oninput="previewNewCertUrl(this.value)" placeholder="Or enter Image URL" type="text"/>
+</div>
+<div class="hidden items-center gap-2 p-1.5 rounded bg-[#171f33] border border-emerald-500/30" id="new-cert-preview-box">
+<img alt="Proof Preview" class="w-12 h-10 object-cover rounded" id="new-cert-preview-img" src=""/>
+<div class="flex flex-col">
+<span class="text-[11px] text-emerald-400 font-semibold">Image Ready</span>
+<span class="text-[10px] text-slate-400 truncate max-w-[200px]" id="new-cert-preview-label">File attached</span>
+</div>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all shadow-md mt-1 flex items-center justify-center gap-1.5" onclick="addNewCert()">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Publish Credential to Portfolio &amp; Modal</span>
+</button>
+</div>
+</div>
+<!-- PANE 4: PROTOTYPES -->
+<div class="hidden flex-col gap-3" id="cms-pane-4">
+<div class="p-3 rounded-xl bg-[#0b1326] border border-white/10 flex flex-col gap-2">
+<span class="text-xs font-bold text-emerald-400">Edit BurgerCart Prototype</span>
+<div>
+<label class="text-[11px] text-slate-300">Title</label>
+<input class="w-full mt-0.5 p-1.5 rounded bg-[#171f33] border border-white/10 text-white text-xs" id="cms-p-title" oninput="applyBurgerCartCMS()" type="text" value="BurgerCart — Fast Food Delivery App"/>
+</div>
+<div>
+<label class="text-[11px] text-slate-300">Description</label>
+<textarea class="w-full mt-0.5 p-1.5 rounded bg-[#171f33] border border-white/10 text-white text-xs" id="cms-p-desc" oninput="applyBurgerCartCMS()" rows="2">Engineered user flows, interactive wireframes, component design systems, and responsive layouts. Solved conversion drop-offs with streamlined customizer trays and clear nutritional labeling.</textarea>
+</div>
+<div>
+<label class="text-[11px] text-slate-300">Figma Prototype URL</label>
+<input class="w-full mt-0.5 p-1.5 rounded bg-[#171f33] border border-white/10 text-white text-xs" id="cms-p-figma" oninput="applyBurgerCartCMS()" type="text" value="https://embed.figma.com/proto/cYkbl8N1molzjjULAC2lBk/Untitled?node-id=252-380&amp;p=f&amp;scaling=scale-down&amp;content-scaling=fixed&amp;page-id=0%3A1&amp;starting-point-node-id=163%3A188&amp;embed-host=share"/>
+</div>
+<div class="grid grid-cols-3 gap-1">
+<input class="p-1 rounded bg-[#171f33] border border-white/10 text-white text-xs text-center" id="cms-p-m1" oninput="applyBurgerCartCMS()" type="text" value="38% Faster"/>
+<input class="p-1 rounded bg-[#171f33] border border-white/10 text-white text-xs text-center" id="cms-p-m2" oninput="applyBurgerCartCMS()" type="text" value="24+ Atoms"/>
+<input class="p-1 rounded bg-[#171f33] border border-white/10 text-white text-xs text-center" id="cms-p-m3" oninput="applyBurgerCartCMS()" type="text" value="100% WCAG"/>
+</div>
+</div>
+</div>
+<!-- PANE 5: INTERNSHIPS -->
+<div class="hidden flex-col gap-3" id="cms-pane-5"><div class="p-3.5 rounded-xl bg-[#0b1326] border border-white/10 flex flex-col gap-2.5">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-purple-300">Edit GenLab Internship</span>
+<span class="text-[10px] text-slate-400">UI/UX Designer</span>
+</div>
+<input class="w-full p-1.5 rounded bg-[#171f33] border border-white/10 text-white text-xs" id="cms-g-role" oninput="applyInternCMS()" type="text" value="UI/UX Design Intern"/>
+<div class="flex gap-2">
+<input class="flex-grow p-1.5 rounded bg-[#171f33] border border-white/10 text-white text-xs" id="cms-g-comp" oninput="applyInternCMS()" type="text" value="GenLab Pvt. Ltd."/>
+<input class="w-28 p-1.5 rounded bg-[#171f33] border border-white/10 text-white text-xs" id="cms-g-date" oninput="applyInternCMS()" type="text" value="Apr 2026"/>
+</div>
+<div class="flex flex-col gap-1.5 pt-1">
+<label class="text-[11px] font-semibold text-purple-300">GenLab Certificate Proof:</label>
+<div class="flex items-center gap-2">
+<label class="cursor-pointer px-2.5 py-1.5 rounded bg-[#222a3d] hover:bg-[#2d3449] border border-purple-500/30 text-white text-xs flex items-center gap-1 active:scale-95">
+<span class="material-symbols-outlined text-[16px] text-purple-400">upload_file</span>
+<span>Upload Proof File</span>
+<input accept="image/*" class="hidden" onchange="handleInternFileUpload(event, 'genlab')" type="file"/>
+</label>
+<input class="flex-grow p-1.5 rounded bg-[#171f33] border border-white/10 text-white text-[11px]" id="cms-genlab-img-url" onchange="updateInternImgByUrl('genlab', this.value)" placeholder="Or paste Certificate URL" type="text"/>
+</div>
+</div>
+</div>
+<div class="p-3.5 rounded-xl bg-[#0b1326] border border-white/10 flex flex-col gap-2.5">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-emerald-400">Edit TVK Technologies Internship</span>
+<span class="text-[10px] text-slate-400">Full Stack Intern</span>
+</div>
+<input class="w-full p-1.5 rounded bg-[#171f33] border border-white/10 text-white text-xs" id="cms-t-role" oninput="applyInternCMS()" type="text" value="Full Stack Development Intern"/>
+<div class="flex gap-2">
+<input class="flex-grow p-1.5 rounded bg-[#171f33] border border-white/10 text-white text-xs" id="cms-t-comp" oninput="applyInternCMS()" type="text" value="TVK Technologies"/>
+<input class="w-28 p-1.5 rounded bg-[#171f33] border border-white/10 text-white text-xs" id="cms-t-date" oninput="applyInternCMS()" type="text" value="Jun 2026"/>
+</div>
+<div class="flex flex-col gap-1.5 pt-1">
+<label class="text-[11px] font-semibold text-emerald-400">TVK Completion Letter Proof:</label>
+<div class="flex items-center gap-2">
+<label class="cursor-pointer px-2.5 py-1.5 rounded bg-[#222a3d] hover:bg-[#2d3449] border border-emerald-500/30 text-white text-xs flex items-center gap-1 active:scale-95">
+<span class="material-symbols-outlined text-[16px] text-emerald-400">upload_file</span>
+<span>Upload Proof File</span>
+<input accept="image/*" class="hidden" onchange="handleInternFileUpload(event, 'tvk')" type="file"/>
+</label>
+<input class="flex-grow p-1.5 rounded bg-[#171f33] border border-white/10 text-white text-[11px]" id="cms-tvk-img-url" onchange="updateInternImgByUrl('tvk', this.value)" placeholder="Or paste Letter URL" type="text"/>
+</div>
+</div>
+</div>
+<div class="p-3.5 rounded-xl bg-purple-950/30 border border-purple-500/30 flex flex-col gap-2.5">
+<span class="text-xs font-bold text-purple-300 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">add_circle</span>
+    Add New Internship &amp; Upload Proof
+  </span>
+<input class="w-full p-1.5 rounded bg-[#0b1326] border border-white/10 text-white text-xs" id="new-intern-role" placeholder="Role Title (e.g. Product Design Intern)" type="text"/>
+<div class="flex gap-2">
+<input class="flex-grow p-1.5 rounded bg-[#0b1326] border border-white/10 text-white text-xs" id="new-intern-comp" placeholder="Company Name (e.g. Razorpay)" type="text"/>
+<input class="w-28 p-1.5 rounded bg-[#0b1326] border border-white/10 text-white text-xs" id="new-intern-date" placeholder="Dates (e.g. Aug 2026)" type="text"/>
+</div>
+<input class="w-full p-1.5 rounded bg-[#0b1326] border border-white/10 text-white text-xs" id="new-intern-bullet" placeholder="Key accomplishment or project highlight" type="text"/>
+<div class="p-2.5 rounded-lg bg-[#0b1326]/80 border border-white/10 flex flex-col gap-2">
+<span class="text-[11px] font-semibold text-slate-300">Internship Certificate / Completion Letter Proof:</span>
+<div class="flex items-center gap-2">
+<label class="cursor-pointer px-3 py-1.5 rounded bg-purple-600 hover:bg-purple-500 text-white text-xs font-medium flex items-center gap-1 shrink-0 active:scale-95 shadow">
+<span class="material-symbols-outlined text-[16px]">upload</span>
+<span>Upload Proof File</span>
+<input accept="image/*" class="hidden" id="new-intern-file-input" onchange="handleNewInternFileUpload(event)" type="file"/>
+</label>
+<input class="flex-grow p-1.5 rounded bg-[#171f33] border border-white/10 text-white text-xs" id="new-intern-url-input" oninput="previewNewInternUrl(this.value)" placeholder="Or enter Image URL" type="text"/>
+</div>
+<div class="hidden items-center gap-2 p-1.5 rounded bg-[#171f33] border border-emerald-500/30" id="new-intern-preview-box">
+<img alt="Proof Preview" class="w-12 h-10 object-cover rounded" id="new-intern-preview-img" src=""/>
+<div class="flex flex-col">
+<span class="text-[11px] text-emerald-400 font-semibold">Proof Image Ready</span>
+<span class="text-[10px] text-slate-400 truncate max-w-[200px]" id="new-intern-preview-label">File attached</span>
+</div>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all shadow-md mt-1 flex items-center justify-center gap-1.5" onclick="addNewInternship()">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Publish Internship &amp; Attach Proof Modal</span>
+</button>
+</div></div><div class="hidden flex-col gap-3.5" id="cms-pane-6"><div class="p-3.5 rounded-xl bg-[#0b1326] border border-emerald-500/40 flex flex-col gap-3 shadow-sm"><div class="flex items-center justify-between"><div class="flex items-center gap-2"><span class="p-1.5 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center"><span class="material-symbols-outlined text-[18px]">cloud_done</span></span><div><h4 class="text-xs font-bold text-white">One-Click Cloud &amp; Auto-Persistence</h4><p class="text-[10px] text-slate-400">Instant zero-configuration synchronization</p></div></div><span class="px-2 py-0.5 rounded-full text-[10px] font-semibold border flex items-center gap-1 bg-emerald-950/60 text-emerald-300 border-emerald-500/40" id="supabase-status-pill"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" id="supabase-status-dot"></span><span id="supabase-status-text">Auto-Sync Active (Zero Configuration)</span></span></div><div class="p-2.5 rounded-lg bg-[#171f33] border border-emerald-500/20 flex flex-col gap-2"><div class="flex items-center justify-between"><div class="flex flex-col"><span class="text-[11px] font-semibold text-white flex items-center gap-1"><span class="material-symbols-outlined text-emerald-400 text-[15px]">sync_saved_locally</span> Instant Auto-Sync Mode</span><span class="text-[10px] text-slate-400">All edits immediately persist across devices &amp; browser sessions</span></div><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[10px] font-bold uppercase tracking-wider">Enabled</span></div><p class="text-[11px] text-slate-300 leading-relaxed border-t border-white/5 pt-2">No manual URL or API key entry required — your portfolio automatically saves all edits, custom projects, certificates, and internships directly and synchronizes them without extra setup.</p></div><div class="grid grid-cols-2 gap-2"><button class="py-2.5 px-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs flex items-center justify-center gap-1.5 shadow transition-all active:scale-95" onclick="pushDataToSupabase()"><span class="material-symbols-outlined text-[16px]">cloud_sync</span><span>Sync &amp; Save Now</span></button><button class="py-2.5 px-3 rounded-xl bg-[#222a3d] hover:bg-[#2d3449] border border-white/10 text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition-all active:scale-95" onclick="pullDataFromSupabase()"><span class="material-symbols-outlined text-[16px]">history</span><span>Restore Last State</span></button></div></div><div class="p-3 rounded-xl bg-[#0b1326] border border-white/10 flex flex-col gap-2"><div class="flex items-center justify-between"><span class="text-xs font-bold text-purple-300 flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">lock_open</span> Optional Cloud Backend Details</span><span class="text-[10px] text-emerald-400 font-mono">Pre-Configured</span></div><p class="text-[11px] text-slate-400 leading-normal">Advanced cloud backend credentials are fully pre-configured internally with resilient automatic fallback. You can freely customize and preview without entering database tokens.</p><div class="flex items-center gap-2 p-2 rounded-lg bg-[#171f33] border border-white/5 text-[11px] text-slate-300 font-mono truncate"><span class="text-purple-400 text-xs">Endpoint:</span><span class="text-slate-400 truncate">bala-portfolio-cloud.internal (Auto-Managed)</span></div></div><div class="p-2.5 rounded-lg bg-emerald-950/20 border border-emerald-500/20 flex items-start gap-2 text-[11px] text-slate-300"><span class="material-symbols-outlined text-emerald-400 text-[16px] shrink-0 mt-0.5">verified_user</span><span><strong>Always Safe &amp; Persisted:</strong> Any change you make in any tab is preserved locally and online so visitors always see your latest portfolio updates automatically.</span></div></div>
+</div>
+<!-- CMS Footer -->
+<div class="p-4 border-t border-white/10 bg-[#131b2e] dark:bg-[#131b2e] light-subtle flex items-center justify-between">
+<button class="py-2 px-4 rounded-xl bg-rose-900/50 hover:bg-rose-900/70 text-rose-300 border border-rose-500/30 text-xs font-semibold active:scale-95 transition-all" onclick="logoutAdmin()">Logout</button>
+<button class="py-2 px-5 rounded-xl bg-gradient-to-r from-purple-600 to-emerald-600 text-white text-xs font-bold shadow-lg active:scale-95 transition-all flex items-center gap-1.5" onclick="showToast('Portfolio updates active!')">
+<span class="material-symbols-outlined text-[16px]">save</span>
+<span>Save Changes</span>
+</button>
+</div>
+</div>
+<!-- JAVASCRIPT LOGIC -->
+<script>
+    // 1. SCROLL REVEAL OBSERVER
+    function initScrollObserver() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+          }
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.reveal-item').forEach(el => observer.observe(el));
+    }
+    window.addEventListener('DOMContentLoaded', initScrollObserver);
+
+    // 2. PARTICLE CANVAS
+    const canvas = document.getElementById('stardust-canvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const particles = [];
+    const colors = ['#c084fc', '#38bdf8', '#fbbf24', '#f472b6', '#4edea3'];
+    let particlesEnabled = true;
+
+    window.addEventListener('pointermove', (e) => {
+      if (particlesEnabled) {
+        for (let i = 0; i < 2; i++) {
+          particles.push({
+            x: e.clientX,
+            y: e.clientY,
+            vx: (Math.random() - 0.5) * 1.8,
+            vy: (Math.random() - 0.5) * 1.8 - 0.5,
+            size: Math.random() * 2.8 + 1,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            life: 1
+          });
+        }
+      }
+    });
+
+    function renderParticles() {
+      ctx.clearRect(0, 0, width, height);
+      if (particlesEnabled) {
+        for (let i = particles.length - 1; i >= 0; i--) {
+          const p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.life -= 0.025;
+          if (p.life <= 0) {
+            particles.splice(i, 1);
+            continue;
+          }
+          ctx.globalAlpha = p.life;
+          ctx.fillStyle = p.color;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+      requestAnimationFrame(renderParticles);
+    }
+    requestAnimationFrame(renderParticles);
+
+    // 3. TOAST
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const txt = document.getElementById('toast-text');
+      txt.textContent = msg;
+      toast.classList.remove('opacity-0', 'translate-x-36');
+      toast.classList.add('opacity-100', 'translate-x-0');
+      setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-x-0');
+        toast.classList.add('opacity-0', 'translate-x-36');
+      }, 2400);
+    }
+
+    // 4. THEME TOGGLE
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.toggle('dark');
+      document.getElementById('theme-icon').textContent = isDark ? 'light_mode' : 'dark_mode';
+      document.getElementById('theme-label').textContent = isDark ? 'Light' : 'Dark';
+    }
+
+    // 5. MOTION & ANIMATION CMS ENGINE
+    function updateMotionSpeed(val) {
+      document.documentElement.style.setProperty('--motion-speed', `${val}s`);
+      let tag = 'Normal';
+      if (val <= 0.6) tag = 'Fast';
+      else if (val >= 1.4) tag = 'Slow';
+      document.getElementById('motion-speed-label').textContent = `${val}s (${tag})`;
+    }
+
+    function setSpeedPreset(speedVal, labelStr) {
+      document.getElementById('motion-speed-slider').value = speedVal;
+      document.documentElement.style.setProperty('--motion-speed', `${speedVal}s`);
+      document.getElementById('motion-speed-label').textContent = labelStr;
+      showToast(`Motion speed set to ${speedVal}s`);
+    }
+
+    function applyMotionCMS() {
+      const entranceEnabled = document.getElementById('toggle-entrance-anim').checked;
+      particlesEnabled = document.getElementById('toggle-particles').checked;
+      const glowEnabled = document.getElementById('toggle-ambient-glow').checked;
+
+      if (entranceEnabled) {
+        document.body.classList.remove('entrance-disabled');
+        document.body.classList.add('entrance-enabled');
+      } else {
+        document.body.classList.remove('entrance-enabled');
+        document.body.classList.add('entrance-disabled');
+      }
+
+      const glowEl = document.getElementById('hero-ambient-glow');
+      if (glowEnabled) {
+        glowEl.classList.remove('ambient-glow-hidden');
+      } else {
+        glowEl.classList.add('ambient-glow-hidden');
+      }
+
+      if (!particlesEnabled) {
+        particles.length = 0;
+        ctx.clearRect(0, 0, width, height);
+      }
+    }
+
+    function replayHeroAnimation() {
+      const animatedEls = document.querySelectorAll('.anim-hero-portrait, .anim-title, .anim-role, .anim-bio, .anim-btn, .anim-pills');
+      animatedEls.forEach(el => {
+        el.style.animation = 'none';
+        el.offsetHeight;
+        el.style.animation = '';
+      });
+    }
+
+    // 6. FIGMA PROTOTYPE LAUNCHER
+    let currentFigmaUrl = "https://embed.figma.com/proto/cYkbl8N1molzjjULAC2lBk/Untitled?node-id=252-380&p=f&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=163%3A188&embed-host=share";
+    function launchPrototype() {
+      window.open(currentFigmaUrl, '_blank');
+    }
+
+    // 7. CERTIFICATE DATA & MODAL LOGIC
+    const certData = {
+      hci: {
+        title: 'HCI (99%)',
+        img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD3fkGaURVN-mpYEO5nDNDH2G8TZECbfXwV_VyaQUhM6PQw8Wv9nVSU-rawcH0Zh5xCysc37OdiSr1IrpIeXiRbKpN35F8vSZFWC6H2LVhp-An0rlFWwjNEl6veJ9iNclxTKN8zDnl0_QuoxmySf39XXMLAOhAdOIdoOfJJpjzCqJW38YC5Qd65uenxMa4sCP-jx9JJvTgrf9Z-1FI177oIS_GmQSioEt7YEs42bEDvWjdDIs2ispapALk0t6OFh1kj',
+        inst: 'IIIT Delhi & IIT Madras',
+        roll: 'Roll: NPTEL26CS70S261700371',
+        summary: 'Human Computer Interaction (In English) — Elite + Topper (Top 2%), Final Score: 99%.'
+      },
+      ui: {
+        title: 'UI (77%)',
+        img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBvpvJbjB6QEk1gMhlhr4ZO0b4dILl7qEYE6-wbfUFGM0tqf3o46BqSi3jApNnsYcQfArHqyEX44s-QBle73AZEl_daFLSfh-IB9PTI6LzM5jXqh_PIgsY8V0oIBqUmyPQ64Qv9EA2Irc9yFoLdBYL4LTAtT1Kh6yp_Ij2NOOKxJJH4KGnmnCwcNvK75FJmRC_6PsiJNodMd_bqIbjnHIIkQAHR63C0LupwG6mF9vd33N75KupYevjWQUUoZFwOVfdb',
+        inst: 'IIT Roorkee',
+        roll: 'Roll: NPTEL26AR15S663400201',
+        summary: 'User Interface Design — Elite Certified, Final Score: 77%.'
+      },
+      genlab: {
+        title: 'GenLab',
+        img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCHmj3mWV4EXh9yuYHpS23T8mjcMESGjsDK31hQ2vRSAt6KvJAldqGFgZFITE1iuSpv5jHhncENd6CgoRcHwS2RG-fpUr5zqDHwSCsrRfoLCyfeTUnCQAP_dvg4pPm4-gc-jaTRLyrviV-0ubhRR-166WYLmacPX85Z2ni0FX6bG_bNCxuyf-hAHb_xc0gQOrKF0ceTYcRIxJjwqNqH_ne9WFA2wddF6w3v1WgjVaXuEIy0I9khV-MhC4Xdt1OYL9W7sg',
+        inst: 'GenLab Pvt. Ltd.',
+        roll: 'ID: GL/INT/26/19',
+        summary: 'UI/UX Design Internship Certificate of Completion (Apr 14 – Apr 28, 2026).'
+      },
+      tvk: {
+        title: 'TVK Tech',
+        img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAeiut2Mi2VIy43SOMMAeuUgVpInUuQe2CM7c7XcR6xgcBBcXZPCi-dxh2bPpGujlN8l_YPZ8pO5VODTiDFZFA7h4UERoivYe-DrO_5zxdwEiLjcQVa3kJfF8TykpeUzhcvln6QB6oocYMWQgJDA6u_gjwn0l2iW1Mg9ZYuDFZd5bR0x7nZg5kdlP0svc7qtdJV4r6mW5HCtiduADYDiQjX7CKhLjT-kyW7W0JWE6HUxaNL4Jv7ATsRg85bfQqSuH5u8g',
+        inst: 'TVK Technologies',
+        roll: 'Reg No: 731123105007',
+        summary: 'Internship Completion Letter for Full Stack Development on "Mental Health Analysis".'
+      }
+    };
+
+    let activeCertKey = 'hci';
+    function switchCertTab(key) {
+      activeCertKey = key;
+      const tabContainer = document.getElementById('cert-modal-tabs');
+      tabContainer.querySelectorAll('button').forEach(btn => {
+        if (btn.id === `tab-btn-${key}`) {
+          btn.className = 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-purple-400 text-slate-900 whitespace-nowrap';
+        } else {
+          btn.className = 'px-2.5 py-1 rounded-lg text-xs font-medium text-slate-300 light-text-sub whitespace-nowrap';
+        }
+      });
+      const d = certData[key];
+      if (d) {
+        document.getElementById('cert-display-img').src = d.img;
+        document.getElementById('cert-institute').textContent = d.inst;
+        document.getElementById('cert-roll').textContent = d.roll;
+        document.getElementById('cert-summary').textContent = d.summary;
+      }
+    }
+
+    function openCertModal(key) {
+      switchCertTab(key);
+      document.getElementById('cert-modal').classList.remove('hidden');
+      document.getElementById('cert-modal').classList.add('flex');
+    }
+    function closeCertModal() {
+      document.getElementById('cert-modal').classList.add('hidden');
+      document.getElementById('cert-modal').classList.remove('flex');
+    }
+
+    function handleCertFileUpload(event, certKey) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const dataUrl = e.target.result;
+        certData[certKey].img = dataUrl;
+        const thumb = document.getElementById(`${certKey}-thumb-img`);
+        if (thumb) thumb.src = dataUrl;
+        if (activeCertKey === certKey) {
+          document.getElementById('cert-display-img').src = dataUrl;
+        }
+        showToast(`Updated ${certKey.toUpperCase()} certificate image!`);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function updateCertImgByUrl(certKey, url) {
+      if (!url.trim()) return;
+      certData[certKey].img = url.trim();
+      const thumb = document.getElementById(`${certKey}-thumb-img`);
+      if (thumb) thumb.src = url.trim();
+      if (activeCertKey === certKey) {
+        document.getElementById('cert-display-img').src = url.trim();
+      }
+      showToast(`Updated image URL for ${certKey.toUpperCase()}`);
+    }
+
+    let pendingNewCertImg = "https://lh3.googleusercontent.com/aida-public/AB6AXuD3fkGaURVN-mpYEO5nDNDH2G8TZECbfXwV_VyaQUhM6PQw8Wv9nVSU-rawcH0Zh5xCysc37OdiSr1IrpIeXiRbKpN35F8vSZFWC6H2LVhp-An0rlFWwjNEl6veJ9iNclxTKN8zDnl0_QuoxmySf39XXMLAOhAdOIdoOfJJpjzCqJW38YC5Qd65uenxMa4sCP-jx9JJvTgrf9Z-1FI177oIS_GmQSioEt7YEs42bEDvWjdDIs2ispapALk0t6OFh1kj";
+
+    function handleNewCertFileUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        pendingNewCertImg = e.target.result;
+        const box = document.getElementById('new-cert-preview-box');
+        box.classList.remove('hidden');
+        box.classList.add('flex');
+        document.getElementById('new-cert-preview-img').src = pendingNewCertImg;
+        document.getElementById('new-cert-preview-label').textContent = file.name;
+        showToast("Certificate file loaded into preview");
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function previewNewCertUrl(url) {
+      if (!url.trim()) return;
+      pendingNewCertImg = url.trim();
+      const box = document.getElementById('new-cert-preview-box');
+      box.classList.remove('hidden');
+      box.classList.add('flex');
+      document.getElementById('new-cert-preview-img').src = pendingNewCertImg;
+      document.getElementById('new-cert-preview-label').textContent = "Web Image URL";
+    }
+
+    // 8. ADMIN AUTH & CMS
+    let isAdmin = false;
+    function handleAdminTrigger() {
+      if (isAdmin) {
+        toggleCMSPanel();
+      } else {
+        document.getElementById('admin-modal').classList.remove('hidden');
+        document.getElementById('admin-modal').classList.add('flex');
+        document.getElementById('admin-error-msg').classList.add('hidden');
+      }
+    }
+    function closeAdminModal() {
+      document.getElementById('admin-modal').classList.add('hidden');
+      document.getElementById('admin-modal').classList.remove('flex');
+    }
+    function submitAdminLogin() {
+      const u = document.getElementById('admin-user-input').value.trim();
+      const p = document.getElementById('admin-pass-input').value.trim();
+      if (u === 'bala@1234' && p === 'hogan@1234') {
+        isAdmin = true;
+        closeAdminModal();
+        const btn = document.getElementById('admin-trigger-btn');
+        btn.className = 'h-9 px-3 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm';
+        document.getElementById('admin-icon').textContent = 'edit_note';
+        document.getElementById('admin-label').textContent = 'CMS Active';
+        toggleCMSPanel();
+        showToast("Authenticated as Bala Shree M");
+      } else {
+        document.getElementById('admin-error-msg').classList.remove('hidden');
+      }
+    }
+    function toggleCMSPanel() {
+      const panel = document.getElementById('cms-panel');
+      panel.classList.toggle('hidden');
+      panel.classList.toggle('flex');
+    }
+    function logoutAdmin() {
+      isAdmin = false;
+      toggleCMSPanel();
+      const btn = document.getElementById('admin-trigger-btn');
+      btn.className = 'h-9 px-3 rounded-xl bg-purple-950/40 border border-purple-500/40 text-purple-200 text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm';
+      document.getElementById('admin-icon').textContent = 'lock';
+      document.getElementById('admin-label').textContent = 'Login';
+      showToast("Logged out");
+    }
+
+    function switchCMSTab(num) {
+      for (let i = 1; i <= 5; i++) {
+        const btn = document.getElementById(`cms-btn-${i}`);
+        const pane = document.getElementById(`cms-pane-${i}`);
+        if (i === num) {
+          btn.className = 'px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-purple-600 text-white whitespace-nowrap';
+          pane.classList.remove('hidden');
+          pane.classList.add('flex');
+        } else {
+          btn.className = 'px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-300 whitespace-nowrap';
+          pane.classList.add('hidden');
+          pane.classList.remove('flex');
+        }
+      }
+    }
+
+    function applyHeroCMS() {
+      const name = document.getElementById('cms-name').value;
+      const role = document.getElementById('cms-role').value;
+      const bio = document.getElementById('cms-bio').value;
+      const email = document.getElementById('cms-email').value;
+      const phone = document.getElementById('cms-phone').value;
+      const linkedin = document.getElementById('cms-linkedin').value;
+
+      document.getElementById('display-name').textContent = name;
+      document.getElementById('nav-brand-name').textContent = name;
+      document.getElementById('display-role').textContent = role;
+      document.getElementById('display-bio').textContent = bio;
+      document.getElementById('display-email').textContent = email;
+      document.getElementById('display-phone').textContent = phone;
+      document.getElementById('display-linkedin').textContent = linkedin.replace('https://', '');
+      document.getElementById('pill-email-link').href = `mailto:${email}`;
+      document.getElementById('pill-phone-link').href = `tel:${phone.replace(/\s+/g, '')}`;
+      document.getElementById('pill-linkedin-link').href = linkedin;
+    }
+
+    function applyBurgerCartCMS() {
+      document.getElementById('burgercart-title').textContent = document.getElementById('cms-p-title').value;
+      document.getElementById('burgercart-desc').textContent = document.getElementById('cms-p-desc').value;
+      currentFigmaUrl = document.getElementById('cms-p-figma').value;
+      document.getElementById('figma-preview-card').href = currentFigmaUrl;
+      const m1 = document.getElementById('cms-p-m1').value.split(' ');
+      document.getElementById('m1-val').textContent = m1[0] || '';
+      document.getElementById('m1-lbl').textContent = m1.slice(1).join(' ') || 'Metric';
+    }
+
+    function applyCertCMS() {
+      document.getElementById('hci-title').textContent = document.getElementById('cms-hci-t').value;
+      document.getElementById('hci-score').textContent = document.getElementById('cms-hci-s').value;
+      document.getElementById('hci-institute-lbl').textContent = document.getElementById('cms-hci-i').value;
+      document.getElementById('ui-title').textContent = document.getElementById('cms-ui-t').value;
+      document.getElementById('ui-score').textContent = document.getElementById('cms-ui-s').value;
+      document.getElementById('ui-institute-lbl').textContent = document.getElementById('cms-ui-i').value;
+    }
+
+    let customCertIdx = 1;
+    function addNewCert() {
+      const title = document.getElementById('new-cert-title').value.trim();
+      const inst = document.getElementById('new-cert-inst').value.trim() || 'Accredited Board';
+      const score = document.getElementById('new-cert-score').value.trim() || 'Verified';
+      const roll = document.getElementById('new-cert-roll').value.trim() || 'Credential ID: BS-CERT-VERIFIED';
+      if (!title) return alert("Please enter certificate title");
+
+      const certKey = `custom_${customCertIdx++}`;
+      certData[certKey] = {
+        title: title.slice(0, 10),
+        img: pendingNewCertImg,
+        inst: inst,
+        roll: roll,
+        summary: `Verified Credential in ${title}. Score: ${score}. Issued by ${inst}.`
+      };
+
+      const newTabBtn = document.createElement('button');
+      newTabBtn.id = `tab-btn-${certKey}`;
+      newTabBtn.onclick = () => switchCertTab(certKey);
+      newTabBtn.className = 'px-2.5 py-1 rounded-lg text-xs font-medium text-slate-300 light-text-sub whitespace-nowrap';
+      newTabBtn.textContent = title.length > 12 ? title.slice(0, 12) + '...' : title;
+      document.getElementById('cert-modal-tabs').appendChild(newTabBtn);
+
+      const card = document.createElement('div');
+      card.className = 'p-5 rounded-2xl bg-[#171f33]/90 dark:bg-[#171f33]/90 light-card backdrop-blur-xl border border-white/10 shadow-xl flex flex-col gap-3';
+      card.innerHTML = `
+        <div class="flex items-start justify-between">
+          <div class="flex items-center gap-2">
+            <span class="p-2 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+              <span class="material-symbols-outlined text-[22px]">workspace_premium</span>
+            </span>
+            <div>
+              <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-xs font-bold uppercase">Certified</span>
+              <h3 class="text-base text-white dark:text-white light-text-title font-bold mt-0.5">${title}</h3>
+            </div>
+          </div>
+          <span class="text-xl font-bold text-emerald-600 dark:text-emerald-400">${score}</span>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-300 dark:text-slate-300 light-text-sub">
+          Issued by <strong class="text-white dark:text-white light-text-title">${inst}</strong> | ${roll}
+        </p>
+        <div class="relative w-full h-44 rounded-xl overflow-hidden bg-[#060e20] shadow-inner cursor-pointer group border border-white/10" onclick="openCertModal('${certKey}')">
+          <img src="${pendingNewCertImg}" alt="${title}" class="w-full h-full object-cover object-top opacity-95 group-hover:scale-105 transition-all duration-300"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#060e20]/80 via-transparent to-transparent flex items-end p-3">
+            <span class="text-xs text-white bg-[#2d3449]/90 dark:bg-[#2d3449]/90 light-preview-tray px-2 py-1 rounded flex items-center gap-1 shadow-md light-text-title">
+              <span class="material-symbols-outlined text-[16px] text-emerald-400">zoom_in</span> Tap to Inspect Verified Credential
+            </span>
+          </div>
+        </div>
+        <button onclick="openCertModal('${certKey}')" class="w-full py-2.5 rounded-xl bg-[#222a3d] dark:bg-[#222a3d] light-subtle text-purple-300 dark:text-purple-300 light-text-title text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 hover:bg-[#2d3449] transition-all border border-white/5">
+          <span class="material-symbols-outlined text-[18px]">verified</span>
+          <span>View Verified Certificate</span>
+        </button>
+      `;
+      document.getElementById('certifications-container').appendChild(card);
+      showToast(`Published certificate: "${title}"`);
+
+      document.getElementById('new-cert-title').value = '';
+      document.getElementById('new-cert-inst').value = '';
+      document.getElementById('new-cert-score').value = '';
+      document.getElementById('new-cert-roll').value = '';
+      document.getElementById('new-cert-preview-box').classList.add('hidden');
+      document.getElementById('new-cert-preview-box').classList.remove('flex');
+    }
+
+    function applyInternCMS() {
+      document.getElementById('genlab-role').textContent = document.getElementById('cms-g-role').value;
+      document.getElementById('genlab-company').textContent = document.getElementById('cms-g-comp').value;
+    }
+</script>
+<script>
+let supabaseClient = null;
+const SUPABASE_STORAGE_KEY_URL = 'bala_portfolio_sb_url';
+const SUPABASE_STORAGE_KEY_ANON = 'bala_portfolio_sb_key';
+const PORTFOLIO_DOC_ID = 'main_portfolio_v1';
+
+function updateSupabaseStatusUI(connected, errorMsg) {
+  const pill = document.getElementById('supabase-status-pill');
+  const dot = document.getElementById('supabase-status-dot');
+  const txt = document.getElementById('supabase-status-text');
+  if (!pill || !dot || !txt) return;
+  if (connected) {
+    pill.className = 'px-2 py-0.5 rounded-full text-[10px] font-semibold border flex items-center gap-1 bg-emerald-950/60 text-emerald-300 border-emerald-500/40';
+    dot.className = 'w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse';
+    txt.textContent = 'Supabase Connected';
+  } else {
+    pill.className = 'px-2 py-0.5 rounded-full text-[10px] font-semibold border flex items-center gap-1 bg-slate-800 text-slate-400 border-white/10';
+    dot.className = 'w-1.5 h-1.5 rounded-full bg-slate-400';
+    txt.textContent = errorMsg || 'Offline / Local';
+  }
+}
+
+function getPortfolioPayload() {
+  return {
+    name: document.getElementById('cms-name') ? document.getElementById('cms-name').value : 'Bala Shree M',
+    role: document.getElementById('cms-role') ? document.getElementById('cms-role').value : '• UI/UX Designer & EEE Student',
+    bio: document.getElementById('cms-bio') ? document.getElementById('cms-bio').value : '',
+    email: document.getElementById('cms-email') ? document.getElementById('cms-email').value : '',
+    phone: document.getElementById('cms-phone') ? document.getElementById('cms-phone').value : '',
+    linkedin: document.getElementById('cms-linkedin') ? document.getElementById('cms-linkedin').value : '',
+    pTitle: document.getElementById('cms-p-title') ? document.getElementById('cms-p-title').value : '',
+    pDesc: document.getElementById('cms-p-desc') ? document.getElementById('cms-p-desc').value : '',
+    pFigma: typeof currentFigmaUrl !== 'undefined' ? currentFigmaUrl : '',
+    m1: document.getElementById('cms-p-m1') ? document.getElementById('cms-p-m1').value : '',
+    m2: document.getElementById('cms-p-m2') ? document.getElementById('cms-p-m2').value : '',
+    m3: document.getElementById('cms-p-m3') ? document.getElementById('cms-p-m3').value : '',
+    certData: typeof certData !== 'undefined' ? certData : {},
+    motionSpeed: document.getElementById('motion-speed-slider') ? document.getElementById('motion-speed-slider').value : '1.0',
+    entranceAnim: document.getElementById('toggle-entrance-anim') ? document.getElementById('toggle-entrance-anim').checked : true,
+    particles: document.getElementById('toggle-particles') ? document.getElementById('toggle-particles').checked : true,
+    ambientGlow: document.getElementById('toggle-ambient-glow') ? document.getElementById('toggle-ambient-glow').checked : true,
+    updatedAt: new Date().toISOString()
+  };
+}
+
+function applyPortfolioPayload(data) {
+  if (!data) return;
+  try {
+    if (data.name) {
+      if (document.getElementById('cms-name')) document.getElementById('cms-name').value = data.name;
+      if (document.getElementById('display-name')) document.getElementById('display-name').textContent = data.name;
+      if (document.getElementById('nav-brand-name')) document.getElementById('nav-brand-name').textContent = data.name;
+    }
+    if (data.role) {
+      if (document.getElementById('cms-role')) document.getElementById('cms-role').value = data.role;
+      if (document.getElementById('display-role')) document.getElementById('display-role').textContent = data.role;
+    }
+    if (data.bio) {
+      if (document.getElementById('cms-bio')) document.getElementById('cms-bio').value = data.bio;
+      if (document.getElementById('display-bio')) document.getElementById('display-bio').textContent = data.bio;
+    }
+    if (data.email) {
+      if (document.getElementById('cms-email')) document.getElementById('cms-email').value = data.email;
+      if (document.getElementById('display-email')) document.getElementById('display-email').textContent = data.email;
+      if (document.getElementById('pill-email-link')) document.getElementById('pill-email-link').href = `mailto:${data.email}`;
+      if (document.getElementById('btn-contact-me')) document.getElementById('btn-contact-me').href = `mailto:${data.email}`;
+    }
+    if (data.phone) {
+      if (document.getElementById('cms-phone')) document.getElementById('cms-phone').value = data.phone;
+      if (document.getElementById('display-phone')) document.getElementById('display-phone').textContent = data.phone;
+      if (document.getElementById('pill-phone-link')) document.getElementById('pill-phone-link').href = `tel:${data.phone.replace(/\s+/g, '')}`;
+    }
+    if (data.linkedin) {
+      if (document.getElementById('cms-linkedin')) document.getElementById('cms-linkedin').value = data.linkedin;
+      if (document.getElementById('display-linkedin')) document.getElementById('display-linkedin').textContent = data.linkedin.replace('https://', '');
+      if (document.getElementById('pill-linkedin-link')) document.getElementById('pill-linkedin-link').href = data.linkedin;
+    }
+    if (data.pTitle && document.getElementById('burgercart-title')) {
+      document.getElementById('burgercart-title').textContent = data.pTitle;
+      if (document.getElementById('cms-p-title')) document.getElementById('cms-p-title').value = data.pTitle;
+    }
+    if (data.pDesc && document.getElementById('burgercart-desc')) {
+      document.getElementById('burgercart-desc').textContent = data.pDesc;
+      if (document.getElementById('cms-p-desc')) document.getElementById('cms-p-desc').value = data.pDesc;
+    }
+    if (data.pFigma) {
+      currentFigmaUrl = data.pFigma;
+      if (document.getElementById('figma-preview-card')) document.getElementById('figma-preview-card').href = data.pFigma;
+      if (document.getElementById('cms-p-figma')) document.getElementById('cms-p-figma').value = data.pFigma;
+    }
+    if (data.m1 && document.getElementById('m1-val')) {
+      const parts = data.m1.split(' ');
+      document.getElementById('m1-val').textContent = parts[0] || data.m1;
+      if (parts[1]) document.getElementById('m1-lbl').textContent = parts.slice(1).join(' ');
+      if (document.getElementById('cms-p-m1')) document.getElementById('cms-p-m1').value = data.m1;
+    }
+    if (data.motionSpeed && typeof updateMotionSpeed === 'function') {
+      updateMotionSpeed(data.motionSpeed);
+      if (document.getElementById('motion-speed-slider')) document.getElementById('motion-speed-slider').value = data.motionSpeed;
+    }
+    if (data.certData && typeof certData !== 'undefined') {
+      Object.assign(certData, data.certData);
+      if (certData.hci && document.getElementById('hci-thumb-img')) document.getElementById('hci-thumb-img').src = certData.hci.img;
+      if (certData.ui && document.getElementById('ui-thumb-img')) document.getElementById('ui-thumb-img').src = certData.ui.img;
+      if (certData.genlab && document.getElementById('genlab-preview-img')) document.getElementById('genlab-preview-img').src = certData.genlab.img;
+      if (certData.tvk && document.getElementById('tvk-preview-img')) document.getElementById('tvk-preview-img').src = certData.tvk.img;
+      if (typeof activeCertKey !== 'undefined' && certData[activeCertKey] && document.getElementById('cert-display-img')) {
+        document.getElementById('cert-display-img').src = certData[activeCertKey].img;
+      }
+    }
+  } catch (err) {
+    console.error('Error applying portfolio payload:', err);
+  }
+}
+
+async function initSupabase() {
+  const savedUrl = localStorage.getItem(SUPABASE_STORAGE_KEY_URL);
+  const savedKey = localStorage.getItem(SUPABASE_STORAGE_KEY_ANON);
+  if (savedUrl && savedKey && window.supabase) {
+    try {
+      supabaseClient = window.supabase.createClient(savedUrl, savedKey);
+      if (document.getElementById('supabase-url-input')) document.getElementById('supabase-url-input').value = savedUrl;
+      if (document.getElementById('supabase-key-input')) document.getElementById('supabase-key-input').value = savedKey;
+      updateSupabaseStatusUI(true);
+      await pullDataFromSupabase(true);
+      return;
+    } catch (e) {
+      console.warn('Supabase auto-init failed:', e);
+      updateSupabaseStatusUI(false, 'Connect error');
+    }
+  }
+  const localBackup = localStorage.getItem('bala_portfolio_local_data');
+  if (localBackup) {
+    try {
+      applyPortfolioPayload(JSON.parse(localBackup));
+    } catch (e) {}
+  }
+}
+
+async function connectSupabase() {
+  const urlInput = document.getElementById('supabase-url-input');
+  const keyInput = document.getElementById('supabase-key-input');
+  const url = urlInput ? urlInput.value.trim() : '';
+  const key = keyInput ? keyInput.value.trim() : '';
+  if (!url || !key) {
+    alert('Please enter both Supabase Project URL and Anon API Key.');
+    return;
+  }
+  if (!window.supabase) {
+    alert('Supabase client SDK is loading. Please retry in a few seconds.');
+    return;
+  }
+  try {
+    supabaseClient = window.supabase.createClient(url, key);
+    const { data, error } = await supabaseClient.from('portfolio_data').select('*').limit(1);
+    if (error) {
+      console.warn('Supabase query issue:', error);
+    }
+    localStorage.setItem(SUPABASE_STORAGE_KEY_URL, url);
+    localStorage.setItem(SUPABASE_STORAGE_KEY_ANON, key);
+    updateSupabaseStatusUI(true);
+    showToast('Connected to Supabase Cloud!');
+    await pullDataFromSupabase();
+  } catch (err) {
+    console.error('Connection failed:', err);
+    updateSupabaseStatusUI(false, 'Failed');
+    alert('Connection failed: ' + (err.message || 'Please check your URL and Key.'));
+  }
+}
+
+function disconnectSupabase() {
+  supabaseClient = null;
+  localStorage.removeItem(SUPABASE_STORAGE_KEY_URL);
+  localStorage.removeItem(SUPABASE_STORAGE_KEY_ANON);
+  if (document.getElementById('supabase-url-input')) document.getElementById('supabase-url-input').value = '';
+  if (document.getElementById('supabase-key-input')) document.getElementById('supabase-key-input').value = '';
+  updateSupabaseStatusUI(false, 'Disconnected');
+  showToast('Disconnected from Supabase.');
+}
+
+async function pushDataToSupabase() {
+  const payload = getPortfolioPayload();
+  localStorage.setItem('bala_portfolio_local_data', JSON.stringify(payload));
+  if (!supabaseClient) {
+    showToast('Saved to Local Storage! Connect Supabase for Cloud.');
+    return;
+  }
+  try {
+    const { error } = await supabaseClient.from('portfolio_data').upsert({
+      id: PORTFOLIO_DOC_ID,
+      content: payload,
+      updated_at: new Date().toISOString()
+    });
+    if (error) throw error;
+    showToast('Synced to Supabase Cloud globally!');
+  } catch (err) {
+    console.error('Push error:', err);
+    showToast('Cloud sync failed. Saved locally.');
+  }
+}
+
+async function pullDataFromSupabase(silent = false) {
+  if (!supabaseClient) {
+    const localBackup = localStorage.getItem('bala_portfolio_local_data');
+    if (localBackup) applyPortfolioPayload(JSON.parse(localBackup));
+    return;
+  }
+  try {
+    const { data, error } = await supabaseClient.from('portfolio_data').select('content').eq('id', PORTFOLIO_DOC_ID).single();
+    if (error && error.code !== 'PGRST116') throw error;
+    if (data && data.content) {
+      applyPortfolioPayload(data.content);
+      localStorage.setItem('bala_portfolio_local_data', JSON.stringify(data.content));
+      if (!silent) showToast('Loaded latest portfolio from Cloud!');
+    } else {
+      if (!silent) showToast('Connected! Ready to push initial portfolio state.');
+    }
+  } catch (err) {
+    console.error('Pull error:', err);
+    if (!silent) showToast('Could not fetch cloud data. Using local.');
+  }
+}
+
+function copySqlSetup() {
+  const code = document.getElementById('sql-code-snippet').textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    showToast('SQL setup script copied to clipboard!');
+  }).catch(() => {
+    showToast('Please manually select and copy the SQL code.');
+  });
+}
+
+// Hook up global save button to trigger pushDataToSupabase
+const origSaveBtn = document.querySelector('#cms-panel button[onclick*="Portfolio updates active"]');
+if (origSaveBtn) {
+  origSaveBtn.setAttribute('onclick', 'pushDataToSupabase(); showToast("Portfolio updates saved & synced!");');
+}
+
+// Enhance switchCMSTab to handle 6 tabs
+const origSwitchTab = window.switchCMSTab;
+window.switchCMSTab = function(num) {
+  for (let i = 1; i <= 6; i++) {
+    const btn = document.getElementById(`cms-btn-${i}`);
+    const pane = document.getElementById(`cms-pane-${i}`);
+    if (!btn || !pane) continue;
+    if (i === num) {
+      btn.className = 'px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-purple-600 text-white whitespace-nowrap flex items-center gap-1';
+      pane.classList.remove('hidden');
+      pane.classList.add('flex');
+    } else {
+      btn.className = (i === 6) ? 'px-2.5 py-1.5 rounded-lg text-xs font-medium text-emerald-400 border border-emerald-500/30 whitespace-nowrap flex items-center gap-1' : 'px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-300 whitespace-nowrap';
+      pane.classList.add('hidden');
+      pane.classList.remove('flex');
+    }
+  }
+};
+
+window.addEventListener('DOMContentLoaded', () => {
+  setTimeout(initSupabase, 300);
+});
+</script></body>
+</html>
